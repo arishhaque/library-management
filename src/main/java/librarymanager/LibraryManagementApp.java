@@ -1,4 +1,4 @@
-package com.library.management.app;
+package librarymanager;
 
 public class LibraryManagementApp {
 
