@@ -24,7 +24,18 @@ public class Shelf extends CatalogueItem {
 	}
 	
 	public void addNewShelfContent(CatalogueItem cItem) {
-		this.shelfContents.add(cItem);
+		boolean addedNewContent = false;
+		for (CatalogueItem catItem: this.shelfContents) {
+			if (catItem instanceof Shelf) {
+				if (catItem.getGenre().toLowerCase().contains(cItem.getGenre().toLowerCase())) {
+					((Shelf) catItem).addNewShelfContent(cItem);
+					addedNewContent = true;
+				}
+			}
+		}
+		if (!addedNewContent) {
+			this.shelfContents.add(cItem);
+		}
 	}
 	
 	public void removeShelfContent(CatalogueItem cItem) {
@@ -46,11 +57,26 @@ public class Shelf extends CatalogueItem {
 		for (CatalogueItem item: this.shelfContents) {
 			if (item instanceof Book) {
 				books.add((Book)item);
-			} else if (item instanceof Shelf) {
+			} else {
 				books.addAll(((Shelf) item).sortedShelfBooksByRating());
 			}
 		}
-		books.sort(Comparator.comparing(Book::getName));
+		books.sort(Comparator.comparing(Book::getRating));
+		return books;
+	}
+	
+	public List<Book> getBooksByGenre(String genre) {
+		List<Book> books = new ArrayList<Book>();
+		for (CatalogueItem item: this.shelfContents) {
+			if (item.getGenre().toLowerCase().contains(genre.toLowerCase())) {
+				if (item instanceof Book) {
+					books.add((Book) item);
+				} else {
+					books.addAll(((Shelf) item).getBooksByGenre(genre));
+				}
+			}
+		}
+		books.sort(Comparator.comparing(Book::getRating));
 		return books;
 	}
 	
@@ -58,10 +84,10 @@ public class Shelf extends CatalogueItem {
 		CatalogueItem found = null;
 		for (CatalogueItem item: this.shelfContents) {
 			if (item instanceof Book) {
-				if (item.getName().contains(name)) {
+				if (item.getName().toLowerCase().contains(name.toLowerCase())) {
 					found = item;
 				}
-			} else if (item instanceof Shelf) {
+			} else {
 				found = ((Shelf) item).findItem(name);
 			}
 		}

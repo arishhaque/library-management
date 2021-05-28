@@ -1,8 +1,8 @@
 package librarymanager.backend;
 
 public class User {
-	String name;
-	String password;
+	private String name;
+	private String password;
 	boolean isAdmin;
 
 	public User(String name, String password) {
@@ -12,7 +12,7 @@ public class User {
 	}
 	
 	public boolean verifyCredentials(String password) {
-		return password.toLowerCase().contains(this.password.toLowerCase());
+		return this.password.equalsIgnoreCase(password);
 	}
 
 	/**
