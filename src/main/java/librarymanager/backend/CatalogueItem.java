@@ -1,6 +1,7 @@
 package librarymanager.backend;
 
 import java.io.Serializable;
+import java.util.*;
 
 public abstract class CatalogueItem implements Serializable {
 	private static final long serialVersionUID = 1234567L;
@@ -59,5 +60,19 @@ public abstract class CatalogueItem implements Serializable {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
+	public void addNewShelfContent(CatalogueItem cItem) {}
+	
+	public void removeShelfContent(CatalogueItem cItem) {}
+	
+	public List<CatalogueItem> sortedShelfByName() { return null; }
+	
+	public List<CatalogueItem> sortedShelfByGenre() { return null; }
+	
+	public List<Book> sortedShelfBooksByRating() { return null; }
+	
+	public List<Book> getBooksByGenre(String genre) { return null; }
+	
+	public CatalogueItem findItem(String name) { return null; }
 	
 }

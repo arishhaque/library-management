@@ -23,6 +23,7 @@ public class Shelf extends CatalogueItem {
 		return shelfContents;
 	}
 	
+	@Override
 	public void addNewShelfContent(CatalogueItem cItem) {
 		boolean addedNewContent = false;
 		for (CatalogueItem catItem: this.shelfContents) {
@@ -38,21 +39,25 @@ public class Shelf extends CatalogueItem {
 		}
 	}
 	
+	@Override
 	public void removeShelfContent(CatalogueItem cItem) {
 		this.shelfContents.remove(cItem);
 	}
 	
-	public List<CatalogueItem> sortedShelfByName(){
+	@Override
+	public List<CatalogueItem> sortedShelfByName() {
 		this.shelfContents.sort(Comparator.comparing(CatalogueItem::getName));
 		return this.shelfContents;
 	}
 	
-	public List<CatalogueItem> sortedShelfByGenre(){
+	@Override
+	public List<CatalogueItem> sortedShelfByGenre() {
 		this.shelfContents.sort(Comparator.comparing(CatalogueItem::getGenre));
 		return this.shelfContents;
 	}
 	
-	public List<Book> sortedShelfBooksByRating(){
+	@Override
+	public List<Book> sortedShelfBooksByRating() {
 		List<Book> books = new ArrayList<Book>();
 		for (CatalogueItem item: this.shelfContents) {
 			if (item instanceof Book) {
@@ -65,6 +70,7 @@ public class Shelf extends CatalogueItem {
 		return books;
 	}
 	
+	@Override
 	public List<Book> getBooksByGenre(String genre) {
 		List<Book> books = new ArrayList<Book>();
 		for (CatalogueItem item: this.shelfContents) {
@@ -80,6 +86,7 @@ public class Shelf extends CatalogueItem {
 		return books;
 	}
 	
+	@Override
 	public CatalogueItem findItem(String name) {
 		CatalogueItem found = null;
 		for (CatalogueItem item: this.shelfContents) {
