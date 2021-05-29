@@ -1,10 +1,13 @@
 package librarymanager.backend;
 
-public class AdminUser extends User {
+public class AdminUser extends LibrarianUser {
 
 	public AdminUser(String name, String password) {
 		super(name, password);
-		this.isAdmin = true;
+	}
+	
+	public AdminUser(UserBuilder builder) {
+		super(builder);
 	}
 
 }

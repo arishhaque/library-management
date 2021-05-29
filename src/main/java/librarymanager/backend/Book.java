@@ -4,6 +4,8 @@ public class Book extends CatalogueItem {
 	private static final long serialVersionUID = 1234567L;
 	double rating;
 	boolean isAvailable;
+	String author;
+	User borrower;
 	
 	Book(String name) {
 		super(name);
@@ -14,6 +16,7 @@ public class Book extends CatalogueItem {
 		super(builder);
 		this.rating = builder.rating;
 		this.isAvailable = builder.isAvailable;
+		this.author = builder.author;
 	}
 	
 	/**
@@ -42,5 +45,29 @@ public class Book extends CatalogueItem {
 	 */
 	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
+	}
+
+	/**
+	 * @return the author
+	 */
+	public String getAuthor() {
+		return author;
+	}
+
+	/**
+	 * @param author the author to set
+	 */
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	public void issueBookToUser(User borrower) {
+		this.borrower = borrower;
+		this.setAvailable(false);
+	}
+	
+	public void returnBook() {
+		this.borrower = null;
+		this.setAvailable(true);
 	}
 }

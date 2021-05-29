@@ -1,9 +1,9 @@
 package librarymanager.backend;
 
 public abstract class CatalogueItemBuilder {
-	String name = "";
-	String genre = "";
-	String location = "";
+	String name = "None";
+	String genre = "None";
+	String location = "None";
 	
 	public CatalogueItemBuilder(String name) {
 		this.name = name;

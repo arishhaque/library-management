@@ -9,4 +9,6 @@ public interface Manager {
 	public List<Book> getAllBooksByGenre(String genre);
 	public List<Book> sortCatalogueByRating();
 	public Book findSpecificBook(String name);
+	public void issueBookToUser(String bookName, User user);
+	public void returnBook(String bookName);
 }

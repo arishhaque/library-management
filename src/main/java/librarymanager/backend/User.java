@@ -3,14 +3,71 @@ package librarymanager.backend;
 public class User {
 	private String name;
 	private String password;
-	boolean isAdmin;
+	String email;
+	String address;
+	String contact;
+	boolean hasAdminAccess;
 
 	public User(String name, String password) {
 		this.name = name;
 		this.password = password;
-		this.isAdmin = false;
+		this.email = "";
+		this.address = "";
+		this.contact = "";
+		this.hasAdminAccess = false;
 	}
 	
+	public User(UserBuilder builder) {
+		this.name = builder.name;
+		this.password = builder.password;
+		this.email = builder.email;
+		this.address = builder.address;
+		this.contact = builder.contact;
+		this.hasAdminAccess = false;
+	}
+	
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param address the address to set
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	/**
+	 * @return the contact
+	 */
+	public String getContact() {
+		return contact;
+	}
+
+	/**
+	 * @param contact the contact to set
+	 */
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
 	public boolean verifyCredentials(String password) {
 		return this.password.equalsIgnoreCase(password);
 	}
@@ -30,9 +87,9 @@ public class User {
 	}
 
 	/**
-	 * @return the isAdmin
+	 * @return the hasAdminAccess
 	 */
-	public boolean isAdmin() {
-		return isAdmin;
+	public boolean hasAdminAccess() {
+		return hasAdminAccess;
 	}
 }

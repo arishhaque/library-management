@@ -2,13 +2,6 @@ package librarymanager.backend;
 
 import java.util.*;
 
-/*
- * Shiva's Notes:
- * We should use this class to control the lists of Shelves and Books.
- * The UI can use it to interact with the rest of the back-end more easily,
- * So that the UI doesn't have to know all the implementation details.
- */
-
 public class CatalogueManager implements Manager {
 	List<Shelf> catalogue;
 	
@@ -38,7 +31,7 @@ public class CatalogueManager implements Manager {
 			}
 		}
 		if (!addedBook) {
-			//Some kind of error message should be thrown. Decide on that later?
+			System.err.println("Error: Failed to Add Book " + newBook.getName() + " to the Catalogue.");
 		}
 	}
 	
@@ -76,6 +69,24 @@ public class CatalogueManager implements Manager {
 			found = (Book)((Shelf) catItem).findItem(name);
 		}
 		return found;
+	}
+	
+	public void issueBookToUser(String bookName, User user) {
+		Book foundBook = this.findSpecificBook(bookName);
+		if (foundBook == null) {
+			System.err.println("Could not find book " + bookName + " in Catalogue.");
+		} else {
+			foundBook.issueBookToUser(user);
+		}
+	}
+	
+	public void returnBook(String bookName) {
+		Book foundBook = this.findSpecificBook(bookName);
+		if (foundBook == null) {
+			System.err.println("Could not find book " + bookName + " in Catalogue.");
+		} else {
+			foundBook.returnBook();
+		}
 	}
 
 }
