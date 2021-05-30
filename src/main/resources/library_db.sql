@@ -24,17 +24,19 @@ DROP TABLE IF EXISTS `books`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `books` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `callno` varchar(100) NOT NULL,
+  `isbn` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `is_available` varchar(45) NOT NULL DEFAULT 'true',
+  `rating` double DEFAULT NULL,
   `author` varchar(100) NOT NULL,
   `publisher` varchar(100) NOT NULL,
   `quantity` int NOT NULL,
-  `issued` int NOT NULL,
+  `issued` int NOT NULL DEFAULT '0',
   `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `callno` (`callno`),
-  UNIQUE KEY `callno_2` (`callno`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `callno` (`isbn`),
+  UNIQUE KEY `callno_2` (`isbn`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +45,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (1,'A@4','C In Depth','Shrivastav','BPB',2,2,'2016-07-19 19:37:56'),(2,'B@1','DBMS','Korth','Pearson',3,0,'2016-07-18 18:39:52'),(3,'G@12','Let\'s see','Yashwant Kanetkar','BPB',10,0,'2016-07-18 23:02:14');
+INSERT INTO `books` VALUES (1,'A@4','C In Depth','true',NULL,'Shrivastav','BPB',2,2,'2016-07-19 19:37:56'),(2,'B@1','DBMS','true',NULL,'Korth','Pearson',3,0,'2016-07-18 18:39:52'),(3,'G@12','Let\'s see','true',NULL,'Yashwant Kanetkar','BPB',10,0,'2016-07-18 23:02:14'),(4,'a123sd','design patterns','true',NULL,'gof','gof',1,0,'2021-05-30 18:49:50'),(5,'a32d','gof','true',4.5,'erich','gamma',1,0,'2021-05-30 20:00:13');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-30  1:14:51
+-- Dump completed on 2021-05-31  1:32:41
