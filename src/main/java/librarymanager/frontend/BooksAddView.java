@@ -1,5 +1,6 @@
 package librarymanager.frontend;
 
+import librarymanager.backend.BookBuilder;
 import librarymanager.backend.db.BookDao;
 
 import java.awt.EventQueue;
@@ -29,6 +30,7 @@ public class BooksAddView extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -51,16 +53,16 @@ public class BooksAddView extends JFrame {
 	 */
 	public BooksAddView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 404);
+		setBounds(100, 100, 450, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JLabel lblAddBooks = new JLabel("Add Books");
 		lblAddBooks.setForeground(Color.GRAY);
-		lblAddBooks.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblAddBooks.setFont(new Font("Tacoma", Font.PLAIN, 18));
 		
-		JLabel lblCallNo = new JLabel("Call No:");
+		JLabel lblIsbn = new JLabel("Isbn:");
 		
 		JLabel lblName = new JLabel("Name:");
 		
@@ -69,6 +71,8 @@ public class BooksAddView extends JFrame {
 		JLabel lblPublisher = new JLabel("Publisher:");
 		
 		JLabel lblQuantity = new JLabel("Quantity:");
+
+		JLabel lblRating = new JLabel("Rating:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -84,18 +88,31 @@ public class BooksAddView extends JFrame {
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
+
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
 		
 		JButton btnAddBooks = new JButton("Add Books");
 		btnAddBooks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			String callno=textField.getText();
+			String isbn=textField.getText();
 			String name=textField_1.getText();
 			String author=textField_2.getText();
 			String publisher=textField_3.getText();
 			String squantity=textField_4.getText();
 			int quantity=Integer.parseInt(squantity);
-			// callno change to isbn, genre, rating
-			int i= BookDao.save(callno, name, author, publisher, quantity);
+			String rating = textField_5.getText();
+
+
+			int i= BookDao.save(new BookBuilder(name)
+					.setIsbn(isbn)
+					.addAuthor(author)
+					.addPublisher(publisher)
+					.addAvailability(quantity > 0 ? true : false)
+					.setQuantity(quantity)
+					.addRating(Double.valueOf(rating)).build());
+
+			//int i= BookDao.save(isbn, name, author, publisher, quantity);
 			if(i>0){
 				JOptionPane.showMessageDialog(BooksAddView.this,"Books added successfully!");
 				LibrarianLoginSuccessView.main(new String[]{});
@@ -108,6 +125,13 @@ public class BooksAddView extends JFrame {
 		});
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LibrarianLoginSuccessView.main(new String[]{});
+				frame.dispose();
+			}
+		});
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -119,13 +143,15 @@ public class BooksAddView extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(18)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblCallNo)
-								.addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblPublisher, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-								.addComponent(lblQuantity, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblName, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(lblIsbn, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(lblPublisher, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(lblQuantity, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(lblRating, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
 							.addGap(47)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
@@ -147,7 +173,7 @@ public class BooksAddView extends JFrame {
 					.addComponent(lblAddBooks)
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCallNo)
+						.addComponent(lblIsbn)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -165,7 +191,11 @@ public class BooksAddView extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblQuantity)
 						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(30)
+					.addGap(18)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblRating)
+								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(30)
 					.addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnBack)

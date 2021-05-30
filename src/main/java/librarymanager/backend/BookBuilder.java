@@ -1,14 +1,24 @@
 package librarymanager.backend;
 
 public class BookBuilder extends CatalogueItemBuilder {
+
+	String isbn;
 	double rating = 0.0;
 	boolean isAvailable = true;
 	String author = "Author Not Listed";
+	String publisher = "Publisher Not Listed";
+	Integer quantity = Integer.valueOf(1);
 	
 	public BookBuilder(String name) {
 		super(name);
 	}
-	
+
+	public BookBuilder setIsbn(String isbn) {
+
+		this.isbn = isbn;
+		return this;
+	}
+
 	public BookBuilder addRating(double rating) {
 		this.rating = rating;
 		return this;
@@ -23,7 +33,17 @@ public class BookBuilder extends CatalogueItemBuilder {
 		this.author = author;
 		return this;
 	}
-	
+
+	public BookBuilder addPublisher(String publisher) {
+		this.publisher = publisher;
+		return this;
+	}
+
+	public BookBuilder setQuantity(Integer quantity) {
+		this.quantity = quantity;
+		return this;
+	}
+
 	public Book build() {
 		return new Book(this);
 	}

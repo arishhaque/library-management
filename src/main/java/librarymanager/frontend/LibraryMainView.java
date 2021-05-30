@@ -1,5 +1,7 @@
 package librarymanager.frontend;
 
+import librarymanager.backend.AdminLogin;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -50,16 +52,16 @@ public class LibraryMainView extends JFrame {
 		lblLibraryManagement.setFont(new Font("Tacoma", Font.PLAIN, 18));
 		lblLibraryManagement.setForeground(Color.GRAY);
 
-		/*
+
 		JButton btnAdminLogin = new JButton("Admin Login");
 		btnAdminLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			AdminLogin.main(new String[]{});
-			frame.dispose();
+			//frame.dispose();
 			}
 		});
-		btnAdminLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		*/
+		btnAdminLogin.setFont(new Font("Tacoma", Font.PLAIN, 15));
+
 		JButton btnLibrarianLogin = new JButton("Librarian Login");
 		btnLibrarianLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -79,7 +81,7 @@ public class LibraryMainView extends JFrame {
 							.addGap(140)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 								.addComponent(btnLibrarianLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								//.addComponent(btnAdminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+								.addComponent(btnAdminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
 									)))
 					.addContainerGap(95, Short.MAX_VALUE))
 		);
@@ -89,7 +91,7 @@ public class LibraryMainView extends JFrame {
 					.addContainerGap()
 					.addComponent(lblLibraryManagement)
 					.addGap(32)
-					//.addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnLibrarianLogin, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(70, Short.MAX_VALUE))

@@ -55,10 +55,10 @@ public class IssueNewBookView extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel lblNewLabel = new JLabel("Issue Book ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setFont(new Font("Tacoma", Font.PLAIN, 18));
 		lblNewLabel.setForeground(Color.GRAY);
 		
-		JLabel lblBookName = new JLabel("Book Callno:");
+		JLabel lblBookName = new JLabel("Book Isbn:");
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -82,14 +82,14 @@ public class IssueNewBookView extends JFrame {
 		btnIssueBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			String bookcallno=textField_1.getText();
+			String bookIsbn=textField_1.getText();
 			int studentid=Integer.parseInt(textField_2.getText());
 			String studentname=textField_3.getText();
 			String studentcontact=textField_4.getText();
 			
-			if(IssueBookDao.checkBook(bookcallno)){
+			if(IssueBookDao.checkBook(bookIsbn)){
 			
-			int i=IssueBookDao.save(bookcallno, studentid, studentname, studentcontact);
+			int i=IssueBookDao.save(bookIsbn, studentid, studentname, studentcontact);
 			if(i>0){
 				JOptionPane.showMessageDialog(IssueNewBookView.this,"Book issued successfully!");
 				LibrarianLoginSuccessView.main(new String[]{});
@@ -115,7 +115,7 @@ public class IssueNewBookView extends JFrame {
 		});
 		
 		JLabel lblNewLabel_1 = new JLabel("Note: Please check Student ID Carefully before issuing book!");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1.setFont(new Font("Tacoma", Font.PLAIN, 13));
 		lblNewLabel_1.setForeground(Color.RED);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -125,10 +125,10 @@ public class IssueNewBookView extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblBookName)
-								.addComponent(lblStudentId)
+								.addComponent(lblBookName, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblStudentId, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblStudentName, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblStudentContact, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblStudentContact, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE))
 							.addGap(10)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)

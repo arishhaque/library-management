@@ -47,8 +47,8 @@ public class LibrarianLoginSuccessView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblLibrarianSection = new JLabel("Librarian Section - JavaTpoint");
-		lblLibrarianSection.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JLabel lblLibrarianSection = new JLabel("Librarian Section");
+		lblLibrarianSection.setFont(new Font("Tacoma", Font.PLAIN, 22));
 		
 		JButton btnNewButton = new JButton("Add Books");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -57,7 +57,7 @@ public class LibrarianLoginSuccessView extends JFrame {
 			frame.dispose();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnNewButton.setFont(new Font("Tacoma", Font.PLAIN, 13));
 		
 		JButton btnViewBooks = new JButton("View Books");
 		btnViewBooks.addActionListener(new ActionListener() {
@@ -65,7 +65,7 @@ public class LibrarianLoginSuccessView extends JFrame {
 				BooksView.main(new String[]{});
 			}
 		});
-		btnViewBooks.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnViewBooks.setFont(new Font("Tacoma", Font.PLAIN, 13));
 		
 		JButton btnIssueBook = new JButton("Issue Book");
 		btnIssueBook.addActionListener(new ActionListener() {
@@ -74,7 +74,7 @@ public class LibrarianLoginSuccessView extends JFrame {
 				frame.dispose();
 			}
 		});
-		btnIssueBook.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnIssueBook.setFont(new Font("Tacoma", Font.PLAIN, 13));
 		
 		JButton btnViewIssuedBooks = new JButton("View Issued Books");
 		btnViewIssuedBooks.addActionListener(new ActionListener() {
@@ -82,7 +82,7 @@ public class LibrarianLoginSuccessView extends JFrame {
 				IssuedBooksView.main(new String[]{});
 			}
 		});
-		btnViewIssuedBooks.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnViewIssuedBooks.setFont(new Font("Tacoma", Font.PLAIN, 13));
 		
 		JButton btnReturnBook = new JButton("Return Book");
 		btnReturnBook.addActionListener(new ActionListener() {
@@ -91,7 +91,7 @@ public class LibrarianLoginSuccessView extends JFrame {
 				frame.dispose();
 			}
 		});
-		btnReturnBook.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnReturnBook.setFont(new Font("Tacoma", Font.PLAIN, 13));
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {

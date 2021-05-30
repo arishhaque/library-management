@@ -11,7 +11,7 @@ public class CatalogueManagerProxy implements Manager {
 		this.cm = new CatalogueManager();
 		this.user = user;
 		this.validUsers = new ArrayList<User>();
-		this.validUsers.add(new AdminUser("admin", "PatternsRCool"));
+		this.validUsers.add(new AdminUser("admin", "admin@123"));
 	}
 
 	@Override

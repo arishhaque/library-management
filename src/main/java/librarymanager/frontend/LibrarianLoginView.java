@@ -73,7 +73,8 @@ public class LibrarianLoginView extends JFrame {
 				LibrarianLoginSuccessView.main(new String[]{});
 				frame.dispose();
 			}else{
-				JOptionPane.showMessageDialog(LibrarianLoginView.this, "Sorry, Username or Password Error","Login Error!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(LibrarianLoginView.this, "Sorry, Username or Password Error","Login Error!",
+						JOptionPane.ERROR_MESSAGE);
 				textField.setText("");
 				passwordField.setText("");
 			}

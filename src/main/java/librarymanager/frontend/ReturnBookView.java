@@ -54,9 +54,9 @@ public class ReturnBookView extends JFrame {
 		
 		JLabel lblReturnBook = new JLabel("Return Book");
 		lblReturnBook.setForeground(Color.GRAY);
-		lblReturnBook.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblReturnBook.setFont(new Font("Tacoma", Font.PLAIN, 18));
 		
-		JLabel lblBookCallno = new JLabel("Book Callno:");
+		JLabel lblBookCallno = new JLabel("Book Isbn:");
 		
 		JLabel lblStudentId = new JLabel("Student Id:");
 		
@@ -85,7 +85,7 @@ public class ReturnBookView extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Note: Check the book properly!");
 		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setFont(new Font("Tacoma", Font.PLAIN, 13));
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

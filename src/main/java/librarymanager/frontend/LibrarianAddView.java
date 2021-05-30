@@ -60,7 +60,7 @@ public class LibrarianAddView extends JFrame {
 		
 		JLabel lblAddLibrarian = new JLabel("Add Librarian");
 		lblAddLibrarian.setForeground(Color.DARK_GRAY);
-		lblAddLibrarian.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblAddLibrarian.setFont(new Font("Tacoma", Font.PLAIN, 22));
 		
 		JLabel lblName = new JLabel("Name:");
 		
@@ -128,8 +128,8 @@ public class LibrarianAddView extends JFrame {
 					.addGap(20)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-						.addComponent(lblName)
-						.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblName, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+						.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						.addComponent(lblAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblContactNo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

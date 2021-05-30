@@ -1,26 +1,28 @@
 package librarymanager.backend.db;
 
 
+import librarymanager.backend.Book;
+
 import java.sql.*;
 
 public class BookDao {
 
 	private static Connection con;
 
-	public static int save(String callno,String name,String author,
-						   String publisher,int quantity){
+	public static int save(Book book){
 
 		int status = 0;
 		try{
 			//Connection con= DBConnect.getConnection();
 
 			con = DbConnectionSingleton.getInstance().createConnection();
-			PreparedStatement ps=con.prepareStatement("insert into books(callno,name,author,publisher,quantity) values(?,?,?,?,?)");
-			ps.setString(1,callno);
-			ps.setString(2,name);
-			ps.setString(3,author);
-			ps.setString(4,publisher);
-			ps.setInt(5,quantity);
+			PreparedStatement ps=con.prepareStatement("insert into books(isbn,name,author,publisher,quantity, rating) values(?,?,?,?,?,?)");
+			ps.setString(1,book.getIsbn());
+			ps.setString(2,book.getName());
+			ps.setString(3,book.getAuthor());
+			ps.setString(4,book.getPublisher());
+			ps.setInt(5,book.getQuantity());
+			ps.setDouble(6, book.getRating());
 			status=ps.executeUpdate();
 			con.close();
 		}catch(Exception e){System.out.println(e);}
