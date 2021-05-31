@@ -1,5 +1,7 @@
 package librarymanager.backend;
 
+import librarymanager.backend.db.LibrarianDao;
+
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
@@ -55,7 +57,10 @@ public class AdminLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			String name=textField.getText();
 			String password=String.valueOf(passwordField.getPassword());
-			if(name.equals("admin")&&password.equals("admin123")){
+
+			Boolean isAdmin = LibrarianDao.isAdmin(name, password);
+			if(isAdmin){
+
 				AdminSuccess.main(new String[]{});
 				frame.dispose();
 			}else{

@@ -1,23 +1,25 @@
 package librarymanager.backend.db;
 
 
+import librarymanager.backend.LibrarianUser;
+
 import java.sql.*;
 public class LibrarianDao {
 
 	private static Connection con;
 	
-	public static int save(String name,String password,String email,String address,String city,String contact){
+	public static int save(LibrarianUser librarianUser){
 		int status=0;
 		try{
 
 			con = DbConnectionSingleton.getInstance().createConnection();
-			PreparedStatement ps=con.prepareStatement("insert into librarian(name,password,email,address,city,contact) values(?,?,?,?,?,?)");
-			ps.setString(1,name);
-			ps.setString(2,password);
-			ps.setString(3,email);
-			ps.setString(4,address);
-			ps.setString(5,city);
-			ps.setString(6,contact);
+			PreparedStatement ps=con.prepareStatement("insert into librarian(name,password,email,address,contact,is_admin) values(?,?,?,?,?,?)");
+			ps.setString(1,librarianUser.getName());
+			ps.setString(2,librarianUser.getPassword());
+			ps.setString(3,librarianUser.getEmail());
+			ps.setString(4,librarianUser.getAddress());
+			ps.setString(5,librarianUser.getContact());
+			ps.setString(6, String.valueOf(librarianUser.hasAdminAccess()));
 			status=ps.executeUpdate();
 			con.close();
 		}catch(Exception e){System.out.println(e);}
@@ -30,6 +32,21 @@ public class LibrarianDao {
 			PreparedStatement ps=con.prepareStatement("delete from librarian where id=?");
 			ps.setInt(1,id);
 			status=ps.executeUpdate();
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		return status;
+	}
+
+
+	public static boolean isAdmin(String name,String password){
+		boolean status=false;
+		try{
+			con = DbConnectionSingleton.getInstance().createConnection();
+			PreparedStatement ps=con.prepareStatement("select is_admin from librarian where name=? and password=?");
+			ps.setString(1,name);
+			ps.setString(2,password);
+			ResultSet rs=ps.executeQuery();
+			status=rs.next();
 			con.close();
 		}catch(Exception e){System.out.println(e);}
 		return status;

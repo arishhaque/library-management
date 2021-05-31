@@ -1,6 +1,9 @@
 package librarymanager.frontend;
 
 import librarymanager.backend.AdminSuccess;
+import librarymanager.backend.BookBuilder;
+import librarymanager.backend.LibrarianUser;
+import librarymanager.backend.UserBuilder;
 import librarymanager.backend.db.LibrarianDao;
 
 import java.awt.EventQueue;
@@ -70,9 +73,9 @@ public class LibrarianAddView extends JFrame {
 		
 		JLabel lblAddress = new JLabel("Address:");
 		
-		JLabel lblCity = new JLabel("City:");
-		
 		JLabel lblContactNo = new JLabel("Contact No:");
+
+		JLabel lblAdmin = new JLabel("Is Admin:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -98,10 +101,27 @@ public class LibrarianAddView extends JFrame {
 			String password=String.valueOf(passwordField.getPassword());
 			String email=textField_1.getText();
 			String address=textField_2.getText();
-			String city=textField_3.getText();
-			String contact=textField_4.getText();
+			String contact=textField_3.getText();
+			String isAdmin=textField_4.getText();
 
-			int i= LibrarianDao.save(name, password, email, address, city, contact);
+			int i = 0;
+			if(isAdmin.equalsIgnoreCase("false")){
+
+				i = LibrarianDao.save(new UserBuilder(name, password)
+						.addEmail(email)
+						.addAddress(address)
+						.addContact(contact)
+						.buildLibrarianUser());
+			} else{
+
+				i = LibrarianDao.save(new UserBuilder(name, password)
+						.addEmail(email)
+						.addAddress(address)
+						.addContact(contact)
+						.buildAdminUser());
+			}
+
+			//int i= LibrarianDao.save(name, password, email, address, city, contact);
 			if(i>0){
 				JOptionPane.showMessageDialog(LibrarianAddView.this,"Librarian added successfully!");
 				AdminSuccess.main(new String[]{});
@@ -127,12 +147,12 @@ public class LibrarianAddView extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(20)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-						.addComponent(lblName, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+						.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(lblName, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						.addComponent(lblAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblContactNo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(lblAdmin, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 					.addGap(58)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
@@ -179,11 +199,11 @@ public class LibrarianAddView extends JFrame {
 						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCity)
+						.addComponent(lblContactNo)
 						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblContactNo)
+						.addComponent(lblAdmin)
 						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
