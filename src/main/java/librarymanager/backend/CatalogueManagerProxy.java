@@ -58,6 +58,11 @@ public class CatalogueManagerProxy implements Manager {
 		cm.returnBook(bookName);
 	}
 	
+	@Override
+	public List<Book> getAllIssuedBooks() {
+		return cm.getAllIssuedBooks();
+	}
+	
 	public void addUserToLibrary(User newUser) {
 		if (newUser.hasAdminAccess() && (this.user instanceof AdminUser)) {
 			this.validUsers.add(newUser);

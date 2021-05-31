@@ -88,5 +88,19 @@ public class CatalogueManager implements Manager {
 			foundBook.returnBook();
 		}
 	}
+	
+	public List<Book> getAllIssuedBooks() {
+		List<Book> books = new ArrayList<Book>();
+		List<Book> issued = new ArrayList<Book>();
+		for (Shelf shelf: this.catalogue) {
+			books.addAll(shelf.sortedShelfBooksByRating());
+		}
+		for (Book b: books) {
+			if (b.isAvailable() == false) {
+				issued.add(b);
+			}
+		}
+		return issued;
+	}
 
 }

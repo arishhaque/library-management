@@ -93,6 +93,10 @@ public class Book extends CatalogueItem {
 		this.quantity = quantity;
 	}
 
+	public User getBorrower() {
+		return borrower;
+	}
+	
 	public void issueBookToUser(User borrower) {
 		this.borrower = borrower;
 		this.setAvailable(false);

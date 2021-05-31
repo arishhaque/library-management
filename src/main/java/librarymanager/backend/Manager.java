@@ -11,4 +11,5 @@ public interface Manager {
 	public Book findSpecificBook(String name);
 	public void issueBookToUser(String bookName, User user);
 	public void returnBook(String bookName);
+	public List<Book> getAllIssuedBooks();
 }
