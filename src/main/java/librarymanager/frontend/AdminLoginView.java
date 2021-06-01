@@ -1,4 +1,4 @@
-package librarymanager.backend;
+package librarymanager.frontend;
 
 import librarymanager.backend.db.LibrarianDao;
 
@@ -9,8 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminLogin extends JFrame {
-	static AdminLogin frame;
+public class AdminLoginView extends JFrame {
+	static AdminLoginView frame;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -22,7 +22,7 @@ public class AdminLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new AdminLogin();
+					frame = new AdminLoginView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,7 @@ public class AdminLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminLogin() {
+	public AdminLoginView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -61,10 +61,10 @@ public class AdminLogin extends JFrame {
 			Boolean isAdmin = LibrarianDao.isAdmin(name, password);
 			if(isAdmin){
 
-				AdminSuccess.main(new String[]{});
+				AdminLoginSuccessView.main(new String[]{});
 				frame.dispose();
 			}else{
-				JOptionPane.showMessageDialog(AdminLogin.this, "Sorry, Username or Password Error","Login Error!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(AdminLoginView.this, "Sorry, Username or Password Error","Login Error!", JOptionPane.ERROR_MESSAGE);
 				textField.setText("");
 				passwordField.setText("");
 			}

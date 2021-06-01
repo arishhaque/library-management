@@ -1,7 +1,5 @@
 package librarymanager.frontend;
 
-import librarymanager.backend.AdminLogin;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -56,8 +54,8 @@ public class LibraryMainView extends JFrame {
 		JButton btnAdminLogin = new JButton("Admin Login");
 		btnAdminLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			AdminLogin.main(new String[]{});
-			//frame.dispose();
+			AdminLoginView.main(new String[]{});
+
 			}
 		});
 		btnAdminLogin.setFont(new Font("Tacoma", Font.PLAIN, 15));
@@ -69,6 +67,15 @@ public class LibraryMainView extends JFrame {
 			}
 		});
 		btnLibrarianLogin.setFont(new Font("Tacoma", Font.PLAIN, 15));
+
+		JButton btnViewCatalogue = new JButton("View Catalogue");
+		btnViewCatalogue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CatalogueView.main(new String[]{});
+			}
+		});
+		btnViewCatalogue.setFont(new Font("Tacoma", Font.PLAIN, 15));
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -81,8 +88,9 @@ public class LibraryMainView extends JFrame {
 							.addGap(140)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 								.addComponent(btnLibrarianLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnAdminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-									)))
+								.addComponent(btnAdminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(btnViewCatalogue, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							)))
 					.addContainerGap(95, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -94,6 +102,8 @@ public class LibraryMainView extends JFrame {
 					.addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnLibrarianLogin, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(70, Short.MAX_VALUE)
+					.addComponent(btnViewCatalogue, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(70, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);

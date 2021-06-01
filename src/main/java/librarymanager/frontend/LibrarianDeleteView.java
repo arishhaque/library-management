@@ -1,6 +1,5 @@
 package librarymanager.frontend;
 
-import librarymanager.backend.AdminSuccess;
 import librarymanager.backend.db.LibrarianDao;
 
 import java.awt.EventQueue;
@@ -76,7 +75,7 @@ public class LibrarianDeleteView extends JFrame {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSuccess.main(new String[]{});
+				AdminLoginSuccessView.main(new String[]{});
 				frame.dispose();
 			}
 		});

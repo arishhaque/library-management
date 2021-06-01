@@ -1,10 +1,5 @@
-package librarymanager.backend;
+package librarymanager.frontend;
 
-
-import librarymanager.frontend.LibrarianDeleteView;
-import librarymanager.frontend.LibrarianAddView;
-import librarymanager.frontend.LibraryMainView;
-import librarymanager.frontend.LibrarianView;
 
 import java.awt.EventQueue;
 
@@ -20,8 +15,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AdminSuccess extends JFrame {
-	static AdminSuccess frame;
+public class AdminLoginSuccessView extends JFrame {
+	static AdminLoginSuccessView frame;
 	private JPanel contentPane;
 
 	/**
@@ -31,7 +26,7 @@ public class AdminSuccess extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new AdminSuccess();
+					frame = new AdminLoginSuccessView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +38,7 @@ public class AdminSuccess extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminSuccess() {
+	public AdminLoginSuccessView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 371);
 		contentPane = new JPanel();

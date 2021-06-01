@@ -1,8 +1,5 @@
 package librarymanager.frontend;
 
-import librarymanager.backend.AdminSuccess;
-import librarymanager.backend.BookBuilder;
-import librarymanager.backend.LibrarianUser;
 import librarymanager.backend.UserBuilder;
 import librarymanager.backend.db.LibrarianDao;
 
@@ -124,7 +121,7 @@ public class LibrarianAddView extends JFrame {
 			//int i= LibrarianDao.save(name, password, email, address, city, contact);
 			if(i>0){
 				JOptionPane.showMessageDialog(LibrarianAddView.this,"Librarian added successfully!");
-				AdminSuccess.main(new String[]{});
+				AdminLoginSuccessView.main(new String[]{});
 				frame.dispose();
 				
 			}else{
@@ -137,7 +134,7 @@ public class LibrarianAddView extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			AdminSuccess.main(new String[]{});
+			AdminLoginSuccessView.main(new String[]{});
 			frame.dispose();
 			}
 		});
