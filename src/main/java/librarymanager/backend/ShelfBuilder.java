@@ -10,15 +10,27 @@ public class ShelfBuilder extends CatalogueItemBuilder {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public ShelfBuilder addGenre(String genre) {
+		this.genre = genre;
+		return this;
+	}
+	
+	public ShelfBuilder addLocation(String location) {
+		this.location = location;
+		return this;
+	}
+	
 	public ShelfBuilder addCItem(CatalogueItem cItem) {
 		this.shelfContents.add(cItem);
 		return this;
 	}
-
+	
 	public Shelf build() {
 		Shelf newShelf = new Shelf(this);
-		for (CatalogueItem cItem: this.shelfContents) {
-			newShelf.addNewShelfContent(cItem);
+		if (this.shelfContents != null) {
+			for (CatalogueItem cItem: this.shelfContents) {
+				newShelf.addNewShelfContent(cItem);
+			}
 		}
 		return newShelf;
 	}

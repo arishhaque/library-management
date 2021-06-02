@@ -51,6 +51,7 @@ public class CatalogueManager implements Manager {
 			books.addAll(((Shelf) genreShelves).getBooksByGenre(genre));
 		}
 		books.sort(Comparator.comparing(Book::getRating));
+		Collections.reverse(books);
 		return books;
 	}
 	
@@ -60,6 +61,7 @@ public class CatalogueManager implements Manager {
 			books.addAll(catItem.sortedShelfBooksByRating());
 		}
 		books.sort(Comparator.comparing(Book::getRating));
+		Collections.reverse(books);
 		return books;
 	}
 	

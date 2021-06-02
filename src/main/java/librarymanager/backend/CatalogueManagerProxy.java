@@ -64,13 +64,14 @@ public class CatalogueManagerProxy implements Manager {
 	}
 	
 	public void addUserToLibrary(User newUser) {
-		if (newUser.hasAdminAccess() && (this.user instanceof AdminUser)) {
-			this.validUsers.add(newUser);
-		} else {
-			System.err.println("Error: Current User is not Admin. Denied permission to add a new Admin or Librarian to the Catalogue.");
-			return;
-		}
-		if (this.user.hasAdminAccess()) {
+		if (newUser.hasAdminAccess()) {
+			if (this.user.hasAdminUserPrivilege()) {
+				this.validUsers.add(newUser);
+			} else {
+				System.err.println("Error: Current User is not Admin. Denied permission to add a new Admin or Librarian to the Catalogue.");
+				return;
+			}
+		} else if (this.user.hasAdminAccess()) {
 			this.validUsers.add(newUser);
 		} else {
 			System.err.println("Error: Current User is not Librarian. Denied permission to add a new User to the Catalogue.");
@@ -81,7 +82,7 @@ public class CatalogueManagerProxy implements Manager {
 		if (this.user.hasAdminAccess()) {
 			for (User vu: this.validUsers) {
 				if (vu.getName().equalsIgnoreCase(username)) {
-					if (vu.hasAdminAccess() && (this.user instanceof AdminUser)) {
+					if (vu.hasAdminAccess() && this.user.hasAdminUserPrivilege()) {
 						this.validUsers.remove(vu);
 					} else {
 						System.err.println("Error: Current User is not Admin. Denied permission to remove an Admin or Librarion from the Catalogue.");

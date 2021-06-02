@@ -67,6 +67,7 @@ public class Shelf extends CatalogueItem {
 			}
 		}
 		books.sort(Comparator.comparing(Book::getRating));
+		Collections.reverse(books);
 		return books;
 	}
 	
@@ -83,6 +84,7 @@ public class Shelf extends CatalogueItem {
 			}
 		}
 		books.sort(Comparator.comparing(Book::getRating));
+		Collections.reverse(books);
 		return books;
 	}
 	

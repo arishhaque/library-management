@@ -12,6 +12,16 @@ public class BookBuilder extends CatalogueItemBuilder {
 	public BookBuilder(String name) {
 		super(name);
 	}
+	
+	public BookBuilder addGenre(String genre) {
+		this.genre = genre;
+		return this;
+	}
+	
+	public BookBuilder addLocation(String location) {
+		this.location = location;
+		return this;
+	}
 
 	public BookBuilder setIsbn(String isbn) {
 

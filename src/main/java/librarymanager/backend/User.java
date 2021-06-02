@@ -7,6 +7,7 @@ public class User {
 	String address;
 	String contact;
 	boolean hasAdminAccess;
+	boolean hasAdminUserPrivilege;
 
 	public User(String name, String password) {
 		this.name = name;
@@ -15,8 +16,9 @@ public class User {
 		this.address = "";
 		this.contact = "";
 		this.hasAdminAccess = false;
+		this.hasAdminUserPrivilege = false;
 	}
-	
+
 	public User(UserBuilder builder) {
 		this.name = builder.name;
 		this.password = builder.password;
@@ -24,6 +26,7 @@ public class User {
 		this.address = builder.address;
 		this.contact = builder.contact;
 		this.hasAdminAccess = false;
+		this.hasAdminUserPrivilege = false;
 	}
 	
 	/**
@@ -91,5 +94,12 @@ public class User {
 	 */
 	public boolean hasAdminAccess() {
 		return hasAdminAccess;
+	}
+	
+	/**
+	 * @return the hasAdminUserPrivilege
+	 */
+	public boolean hasAdminUserPrivilege() {
+		return hasAdminUserPrivilege;
 	}
 }

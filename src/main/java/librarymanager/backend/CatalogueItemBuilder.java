@@ -18,5 +18,4 @@ public abstract class CatalogueItemBuilder {
 		this.location = location;
 		return this;
 	}
-	
 }
