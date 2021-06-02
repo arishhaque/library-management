@@ -90,10 +90,10 @@ CREATE TABLE `librarian` (
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `address` varchar(200) NOT NULL,
-  `city` varchar(100) NOT NULL,
   `contact` varchar(20) NOT NULL,
+  `is_admin` varchar(100) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `librarian` (
 
 LOCK TABLES `librarian` WRITE;
 /*!40000 ALTER TABLE `librarian` DISABLE KEYS */;
-INSERT INTO `librarian` VALUES (1,'Prabhakar','ppp','prabhakar@gmail.com','javatpoint','noida','9998328238'),(4,'sumedh','sumesh','sumesh@gmail.com','Kuch Bhi','noida','93823932823'),(6,'abhi','abhi','abhi@gmail.com','javatpoint','noida','92393282323');
+INSERT INTO `librarian` VALUES (1,'Prabhakar','ppp','prabhakar@gmail.com','javatpoint','9998328238','false'),(4,'sumedh','sumesh','sumesh@gmail.com','Kuch Bhi','93823932823','false'),(6,'abhi','abhi','abhi@gmail.com','javatpoint','92393282323','false'),(7,'admin','admin@123','admin@gmail.com','Delhi','92393285555','true');
 /*!40000 ALTER TABLE `librarian` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -115,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-31  1:32:41
+-- Dump completed on 2021-06-02  1:22:25
