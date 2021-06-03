@@ -86,7 +86,7 @@ public class IssueNewBookView extends JFrame {
 			int studentid=Integer.parseInt(textField_2.getText());
 			String studentname=textField_3.getText();
 			String studentcontact=textField_4.getText();
-			
+
 			if(IssueBookDao.checkBook(bookIsbn)){
 
 				int i=IssueBookDao.save(bookIsbn, studentid, studentname, studentcontact);
@@ -100,7 +100,7 @@ public class IssueNewBookView extends JFrame {
 				}//end of save if-else
 
 			}else{
-				JOptionPane.showMessageDialog(IssueNewBookView.this,"Sorry, Callno doesn't exist!");
+				JOptionPane.showMessageDialog(IssueNewBookView.this,"Sorry, book doesn't exist!");
 			}//end of checkbook if-else
 			
 			}

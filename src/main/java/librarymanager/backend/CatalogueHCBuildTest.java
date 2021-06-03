@@ -66,7 +66,7 @@ public class CatalogueHCBuildTest {
 		this.cmp.addUserToLibrary(new UserBuilder("abhi", "abhi").buildLibrarianUser());
 		this.cmp.addUserToLibrary(new UserBuilder("sgovindaraju", "PatternsRCool").addEmail("sgovindaraju@scu.edu").buildLibrarianUser());
 		this.cmp.addUserToLibrary(new UserBuilder("ahaque", "GoSCU").addEmail("mhaque@scu.edu").buildLibrarianUser());
-		this.cmp.addUserToLibrary(new UserBuilder("rani", "bestprof").addEmail("rmikkilineni@scu.edu").buildLibrarianUser());
+		this.cmp.addUserToLibrary(new UserBuilder("john", "bestprof").addEmail("john.doe@scu.edu").buildLibrarianUser());
 		this.cmp.addUserToLibrary(new UserBuilder("studenta", "password").buildUser());
 		this.cmp.addUserToLibrary(new UserBuilder("studentb", "password").buildUser());
 		this.cmp.addUserToLibrary(new UserBuilder("studentc", "password").buildUser());

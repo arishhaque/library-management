@@ -16,16 +16,18 @@ public class BookDao {
 
 		int status = 0;
 		try{
-			//Connection con= DBConnect.getConnection();
 
 			con = DbConnectionSingleton.getInstance().createConnection();
-			PreparedStatement ps=con.prepareStatement("insert into books(isbn,name,author,publisher,quantity, rating) values(?,?,?,?,?,?)");
+			PreparedStatement ps=con.prepareStatement("insert into books(isbn,name,genre,rating,author,publisher,quantity,shelf_no) values(?,?,?,?,?,?,?,?)");
 			ps.setString(1,book.getIsbn());
 			ps.setString(2,book.getName());
-			ps.setString(3,book.getAuthor());
-			ps.setString(4,book.getPublisher());
-			ps.setInt(5,book.getQuantity());
-			ps.setDouble(6, book.getRating());
+			ps.setString(3, book.getGenre());
+			ps.setDouble(4, book.getRating());
+			ps.setString(5,book.getAuthor());
+			ps.setString(6,book.getPublisher());
+			ps.setInt(7,book.getQuantity());
+			ps.setInt(8, Integer.valueOf(book.getLocation()));
+
 			status=ps.executeUpdate();
 			con.close();
 		}catch(Exception e){System.out.println(e);}
@@ -37,13 +39,11 @@ public class BookDao {
 		ResultSet rs = null;
 		int status = 0;
 		try{
-			//Connection con= DBConnect.getConnection();
-
 			Connection con = DbConnectionSingleton.getInstance().createConnection();
 			PreparedStatement ps=con.prepareStatement("select * from books",
 					ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = ps.executeQuery();
-			//con.close();
+
 		}catch(Exception e){System.out.println(e);}
 
 		return rs;
@@ -54,13 +54,12 @@ public class BookDao {
 		ResultSet rs = null;
 		int status = 0;
 		try{
-			//Connection con= DBConnect.getConnection();
 
 			Connection con = DbConnectionSingleton.getInstance().createConnection();
 			PreparedStatement ps=con.prepareStatement("select * from books",
 					ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = ps.executeQuery();
-			//con.close();
+
 		}catch(Exception e){System.out.println(e);}
 
 		List<String> list = new ArrayList<>();
@@ -69,10 +68,19 @@ public class BookDao {
 
 			Book book = new BookBuilder(rs.getString("name"))
 					.setIsbn(rs.getString("isbn"))
+					.addAvailability(rs.getString("is_available") != null && rs.getString("is_available")
+							.equalsIgnoreCase("true") ? true : false)
+					.addGenre(rs.getString("genre"))
+					.addRating(rs.getDouble("rating"))
+					.setQuantity(rs.getInt("quantity"))
+					.addAuthor(rs.getString("author"))
+					.addPublisher(rs.getString("publisher"))
 					.build();
 
 			list.add(book.toString());
 		}
+		if(con != null)
+			con.close();
 
 		return list;
 	}

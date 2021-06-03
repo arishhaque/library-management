@@ -31,6 +31,8 @@ public class BooksAddView extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
 
 	/**
 	 * Launch the application.
@@ -52,6 +54,7 @@ public class BooksAddView extends JFrame {
 	 * Create the frame.
 	 */
 	public BooksAddView() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
 		contentPane = new JPanel();
@@ -73,6 +76,10 @@ public class BooksAddView extends JFrame {
 		JLabel lblQuantity = new JLabel("Quantity:");
 
 		JLabel lblRating = new JLabel("Rating:");
+
+		JLabel lblGenre = new JLabel("Genre:");
+
+		JLabel lblShelfNo = new JLabel("Shelf No.:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -91,33 +98,42 @@ public class BooksAddView extends JFrame {
 
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
+
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
 		
 		JButton btnAddBooks = new JButton("Add Books");
 		btnAddBooks.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			String isbn=textField.getText();
-			String name=textField_1.getText();
-			String author=textField_2.getText();
-			String publisher=textField_3.getText();
-			String squantity=textField_4.getText();
-			int quantity=Integer.parseInt(squantity);
-			String rating = textField_5.getText();
 
+			public void actionPerformed(ActionEvent e) {
+				String isbn=textField.getText();
+				String name=textField_1.getText();
+				String author=textField_2.getText();
+				String publisher=textField_3.getText();
+				int quantity=Integer.parseInt(textField_4.getText());
+				String rating = textField_5.getText();
+				String genre = textField_6.getText();
+				int shelfNumber = Integer.parseInt(textField_7.getText());
 
 			int i= BookDao.save(new BookBuilder(name)
 					.setIsbn(isbn)
+					.addRating(Double.valueOf(rating))
+					.addGenre(genre)
 					.addAuthor(author)
 					.addPublisher(publisher)
 					.addAvailability(quantity > 0 ? true : false)
 					.setQuantity(quantity)
-					.addRating(Double.valueOf(rating)).build());
+					.addLocation(String.valueOf(shelfNumber))
+					.build());
 
-			//int i= BookDao.save(isbn, name, author, publisher, quantity);
 			if(i>0){
 				JOptionPane.showMessageDialog(BooksAddView.this,"Books added successfully!");
 				LibrarianLoginSuccessView.main(new String[]{});
 				frame.dispose();
-				
+
 			}else{
 				JOptionPane.showMessageDialog(BooksAddView.this,"Sorry, unable to save!");
 			}
@@ -148,9 +164,13 @@ public class BooksAddView extends JFrame {
 								.addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								.addComponent(lblPublisher, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								.addComponent(lblQuantity, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-								.addComponent(lblRating, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-							.addGap(47)
+								.addComponent(lblRating, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(lblGenre, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(lblShelfNo, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+								.addGap(47)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
 									.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
@@ -171,31 +191,39 @@ public class BooksAddView extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(lblAddBooks)
-					.addGap(18)
+					.addGap(15)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblIsbn)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(15)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblName)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(15)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblAuthor)
 						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(15)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPublisher)
 						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(15)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblQuantity)
 						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(15)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblRating)
 								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(30)
+						.addGap(15)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblGenre)
+								.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(15)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblShelfNo)
+								.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						//.addGap(15)
 					.addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnBack)
