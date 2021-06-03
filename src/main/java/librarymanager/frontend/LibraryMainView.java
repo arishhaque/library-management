@@ -89,7 +89,7 @@ public class LibraryMainView extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 								.addComponent(btnLibrarianLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(btnAdminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnViewCatalogue, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								//	.addComponent(btnViewCatalogue, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							)))
 					.addContainerGap(95, Short.MAX_VALUE))
 		);
@@ -102,9 +102,9 @@ public class LibraryMainView extends JFrame {
 					.addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnLibrarianLogin, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(70, Short.MAX_VALUE)
-					.addComponent(btnViewCatalogue, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(70, Short.MAX_VALUE))
+					//.addComponent(btnViewCatalogue, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					//.addContainerGap(70, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

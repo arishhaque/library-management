@@ -36,9 +36,8 @@ CREATE TABLE `books` (
   `issued` int NOT NULL DEFAULT '0',
   `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `callno` (`isbn`),
-  UNIQUE KEY `callno_2` (`isbn`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `isbn` (`isbn`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +46,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (1,'A24','C In Depth','true','tech',3.5,'Shrivastav','BPB',2,NULL,2,'2021-06-03 08:32:20'),(2,'B91','DBMS','true','tech',4,'Korth','Pearson',3,NULL,0,'2021-06-03 08:32:20'),(3,'G012','Let\'s us c','true','tech',3,'Yashwant Kanetkar','BPB',7,NULL,3,'2021-06-03 08:35:53'),(4,'a123sd','design patterns','true','tech',4,'gof','gof',1,NULL,0,'2021-06-03 08:32:20'),(5,'a32d','gof','true','tech',4.5,'erich','gamma',1,NULL,0,'2021-05-30 20:00:13'),(6,'a123','dbms','true','tech',4,'Paul','orielly',3,NULL,0,'2021-06-03 09:15:32'),(7,'0-399-90070-5','The Bourne Identity','true','Action',3.5,'Robert','Richard',2,1,0,'2021-06-03 09:37:08');
+INSERT INTO `books` VALUES (1,'1-399-90070-4','The Bourne Identity','true','Action',3.5,'Robert Ludlum','Richard Marek',7,1,0,'2021-06-03 16:27:22'),(2,'2-214-66814-2','First Blood','true','Action',4,'Rowman & Littlefield','Pearson',7,1,0,'2021-06-03 15:50:20'),(3,'3-038-54946-9','Treasure Island','true','Adventure',3,'Robert Louis Stevenson','Casell & Company',6,9,1,'2021-06-03 16:13:07'),(4,'4-038-34652-1','The Adventures of Sherlock Holmes','true','Adventure',4,'Sir Arthur Conan Doyle','George Newnes',9,9,1,'2021-06-03 16:40:13'),(5,'4-937-54962-7','To Kill a Mockingbird','true','Drama',4.5,'Harper Lee','J.B. Lippincott & Co.',3,4,1,'2021-06-03 16:11:47'),(6,'5-937-54909-6','The Kite Runner','true','Drama',4,'Khaled Hosseini','Riverhead Books',3,4,0,'2021-06-03 16:11:47'),(7,'6-637-43270-8','Bridge to Terabithia','true','Action',3.5,'Katherine Patterson','Thomas Y. Crowell Co.',2,1,1,'2021-06-03 16:11:47'),(8,'7-765-05478-3','The Hitchhiker\'s Guide to the Galaxy','true','Science Fiction',5,'Douglas Adams','Pan Books',4,7,1,'2021-06-03 16:11:47');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,8 +64,9 @@ CREATE TABLE `issuebooks` (
   `studentname` varchar(50) NOT NULL,
   `studentcontact` varchar(20) NOT NULL,
   `issueddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `returndate` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `issuebooks` (
 
 LOCK TABLES `issuebooks` WRITE;
 /*!40000 ALTER TABLE `issuebooks` DISABLE KEYS */;
-INSERT INTO `issuebooks` VALUES (4,'A24',23,'kk','932992932','2021-06-03 08:30:00'),(6,'B91',335,'Sumedh','95676565756','2021-06-03 08:30:00'),(7,'a32d',87,'abhishek','9329882382','2021-06-03 08:30:00'),(8,'G012',123,'John','12435','2021-06-03 08:36:20');
+INSERT INTO `issuebooks` VALUES (4,'1-399-90070-4',1001,'Michael','9329929321','2021-06-03 16:14:48',NULL),(7,'3-038-54946-9',1011,'Charles','9329882382','2021-06-03 16:14:48',NULL),(8,'6-637-43270-8',1021,'John','8269882382','2021-06-03 16:14:48',NULL),(9,'4-937-54962-7',1013,'Walter','8269784381','2021-06-03 16:14:48',NULL),(10,'7-765-05478-3',1099,'Turly','6798432109','2021-06-03 16:15:58',NULL),(12,'4-038-34652-1',1081,'Peter','8475980612','2021-06-03 16:40:13','2021-06-02 18:30:00');
 /*!40000 ALTER TABLE `issuebooks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `librarian` (
 
 LOCK TABLES `librarian` WRITE;
 /*!40000 ALTER TABLE `librarian` DISABLE KEYS */;
-INSERT INTO `librarian` VALUES (1,'Prabhakar','ppp','prabhakar@gmail.com','Bangalore','9998328238','false'),(4,'sumedh','sumesh','sumesh@gmail.com','NYC','93823932823','false'),(6,'abhi','abhi','abhi@gmail.com','California','92393282323','false'),(7,'admin','admin@123','admin@gmail.com','Delhi','92393285555','true');
+INSERT INTO `librarian` VALUES (1,'Xavier','user@123','xavier@gmail.com','Bangalore','9998328238','false'),(4,'Bale','bale@123','bale@gmail.com','NYC','93823932823','false'),(6,'John Doe','john@123','john.doe@gmail.com','California','92393282323','false'),(7,'admin','admin@123','admin@gmail.com','Delhi','92393285555','true');
 /*!40000 ALTER TABLE `librarian` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ CREATE TABLE `shelves` (
   `genre` varchar(45) NOT NULL DEFAULT 'tech',
   `location` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `shelves` (
 
 LOCK TABLES `shelves` WRITE;
 /*!40000 ALTER TABLE `shelves` DISABLE KEYS */;
-INSERT INTO `shelves` VALUES (1,'Shelf A1-0','Action','West Block 1'),(2,'Shelf B1-0','Tech','West Block 2'),(3,'Shelf C1-0','Fiction','West Block 3'),(4,'Shelf D1-0','Drama','West Block 4');
+INSERT INTO `shelves` VALUES (1,'Shelf A1-0','Action','West Wing Floor 1'),(2,'Shelf A1-1','Tech','West Wing Floor 1'),(3,'Shelf A1-2','Fiction','West Wing Floor 1'),(4,'Shelf B2-1','Drama','West Wing Floor 2'),(5,'Shelf B2-2','Romance','West Wing Floor 2'),(6,'Shelf B2-2','Drama','East Wing Floor 2'),(7,'Shelf B2-3','Tragedy','East Wing Floor 2'),(8,'Shelf C3-0','Science Fiction','East Wing Floor 1'),(9,'Shelf C3-1','Adventure','East Wing Floor 3');
 /*!40000 ALTER TABLE `shelves` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -143,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-03 15:17:57
+-- Dump completed on 2021-06-03 23:51:47

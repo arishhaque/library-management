@@ -71,7 +71,7 @@ public class ReturnBookView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String bookcallno=textField.getText();
 				int studentid=Integer.parseInt(textField_1.getText());
-				int i= ReturnBookDao.delete(bookcallno, studentid);
+				int i= ReturnBookDao.returnBook(bookcallno, studentid);
 				if(i>0){
 					JOptionPane.showMessageDialog(ReturnBookView.this,"Book returned successfully!");
 					LibrarianLoginSuccessView.main(new String[]{});
