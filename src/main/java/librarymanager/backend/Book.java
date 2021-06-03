@@ -106,4 +106,19 @@ public class Book extends CatalogueItem {
 		this.borrower = null;
 		this.setAvailable(true);
 	}
+
+	@Override
+	public String toString() {
+		return "Book{" +
+				"isbn='" + isbn + '\'' +
+				", rating=" + rating +
+				", isAvailable=" + isAvailable +
+				", author='" + author + '\'' +
+				", publisher='" + publisher + '\'' +
+				", quantity=" + quantity +
+				", borrower=" + borrower +
+				'}';
+	}
 }
+
+

@@ -88,17 +88,17 @@ public class IssueNewBookView extends JFrame {
 			String studentcontact=textField_4.getText();
 			
 			if(IssueBookDao.checkBook(bookIsbn)){
-			
-			int i=IssueBookDao.save(bookIsbn, studentid, studentname, studentcontact);
-			if(i>0){
-				JOptionPane.showMessageDialog(IssueNewBookView.this,"Book issued successfully!");
-				LibrarianLoginSuccessView.main(new String[]{});
-				frame.dispose();
-				
-			}else{
-				JOptionPane.showMessageDialog(IssueNewBookView.this,"Sorry, unable to issue!");
-			}//end of save if-else
-			
+
+				int i=IssueBookDao.save(bookIsbn, studentid, studentname, studentcontact);
+				if(i>0){
+					JOptionPane.showMessageDialog(IssueNewBookView.this,"Book issued successfully!");
+					LibrarianLoginSuccessView.main(new String[]{});
+					frame.dispose();
+
+				}else{
+					JOptionPane.showMessageDialog(IssueNewBookView.this,"Sorry, unable to issue!");
+				}//end of save if-else
+
 			}else{
 				JOptionPane.showMessageDialog(IssueNewBookView.this,"Sorry, Callno doesn't exist!");
 			}//end of checkbook if-else

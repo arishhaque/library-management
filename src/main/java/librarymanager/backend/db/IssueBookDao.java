@@ -5,13 +5,13 @@ public class IssueBookDao {
 
 	private static Connection con;
 
-	public static boolean checkBook(String bookcallno){
+	public static boolean checkBook(String isbn){
 		boolean status=false;
 		try{
 
 			con = DbConnectionSingleton.getInstance().createConnection();
-			PreparedStatement ps=con.prepareStatement("select * from books where callno=?");
-			ps.setString(1,bookcallno);
+			PreparedStatement ps=con.prepareStatement("select * from books where isbn=?");
+			ps.setString(1,isbn);
 			ResultSet rs=ps.executeQuery();
 			status=rs.next();
 			con.close();
@@ -19,16 +19,16 @@ public class IssueBookDao {
 		return status;
 	}
 
-	public static int save(String bookcallno,int studentid,String studentname,String studentcontact){
+	public static int save(String isbn,int studentid,String studentname,String studentcontact){
 		int status=0;
 		try{
 
-			con = DbConnectionSingleton.getInstance().createConnection();
-			status=updatebook(bookcallno);//updating quantity and issue
+			status=updatebook(isbn);//updating quantity and issue
 
+			con = DbConnectionSingleton.getInstance().createConnection();
 			if(status>0){
-				PreparedStatement ps=con.prepareStatement("insert into issuebooks(bookcallno,studentid,studentname,studentcontact) values(?,?,?,?)");
-				ps.setString(1,bookcallno);
+				PreparedStatement ps=con.prepareStatement("insert into issuebooks(book_isbn,studentid,studentname,studentcontact) values(?,?,?,?)");
+				ps.setString(1,isbn);
 				ps.setInt(2,studentid);
 				ps.setString(3,studentname);
 				ps.setString(4,studentcontact);
@@ -41,14 +41,14 @@ public class IssueBookDao {
 	}
 
 
-	public static int updatebook(String bookcallno){
+	public static int updatebook(String isbn){
 		int status=0;
 		int quantity=0,issued=0;
 		try{
 
 			con = DbConnectionSingleton.getInstance().createConnection();
-			PreparedStatement ps=con.prepareStatement("select quantity,issued from books where callno=?");
-			ps.setString(1,bookcallno);
+			PreparedStatement ps=con.prepareStatement("select quantity,issued from books where isbn=?");
+			ps.setString(1,isbn);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()){
 				quantity=rs.getInt("quantity");
@@ -56,10 +56,10 @@ public class IssueBookDao {
 			}
 
 			if(quantity>0){
-			PreparedStatement ps2=con.prepareStatement("update books set quantity=?,issued=? where callno=?");
+			PreparedStatement ps2=con.prepareStatement("update books set quantity=?,issued=? where isbn=?");
 			ps2.setInt(1,quantity-1);
 			ps2.setInt(2,issued+1);
-			ps2.setString(3,bookcallno);
+			ps2.setString(3,isbn);
 
 			status=ps2.executeUpdate();
 			}

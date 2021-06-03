@@ -1,7 +1,11 @@
 package librarymanager;
 
 
+import librarymanager.backend.Book;
+import librarymanager.backend.CatalogueHCBuildTest;
+import librarymanager.backend.User;
 import librarymanager.frontend.LibraryMainView;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,7 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 
 @SpringBootApplication
-public class LibraryManagementApp extends JFrame{
+public class LibraryManagementApp extends JFrame implements CommandLineRunner {
 
     static LibraryMainView frame;
 
@@ -39,4 +43,21 @@ public class LibraryManagementApp extends JFrame{
                 .run(args);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+
+        //CatalogueHCBuildTest.main(null);
+
+        System.out.println("Begin test.");
+        CatalogueHCBuildTest chcbt = new CatalogueHCBuildTest();
+        System.out.println("\nBooks Test");
+        for (Book book: chcbt.getCMP().getAllBooksByGenre("")) {
+            System.out.println(book.getName());
+        }
+        System.out.println("\nUser Test");
+        for (User u: chcbt.getCMP().validUsers) {
+            System.out.println(u.getName());
+        }
+        System.out.println("\nEnd test.");
+    }
 }

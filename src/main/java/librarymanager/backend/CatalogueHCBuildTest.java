@@ -1,6 +1,8 @@
 package librarymanager.backend;
 
 public class CatalogueHCBuildTest {
+
+
 	CatalogueManagerProxy cmp;
 
 	public CatalogueHCBuildTest() {
@@ -77,18 +79,6 @@ public class CatalogueHCBuildTest {
 		return this.cmp;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println("Begin test.");
-		CatalogueHCBuildTest chcbt = new CatalogueHCBuildTest();
-		System.out.println("\nBooks Test");
-		for (Book book: chcbt.getCMP().getAllBooksByGenre("")) {
-			System.out.println(book.getName());
-		}
-		System.out.println("\nUser Test");
-		for (User u: chcbt.getCMP().validUsers) {
-			System.out.println(u.getName());
-		}
-		System.out.println("\nEnd test.");
-	}
+
 
 }

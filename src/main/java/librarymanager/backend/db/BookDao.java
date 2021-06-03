@@ -2,8 +2,11 @@ package librarymanager.backend.db;
 
 
 import librarymanager.backend.Book;
+import librarymanager.backend.BookBuilder;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDao {
 
@@ -44,6 +47,34 @@ public class BookDao {
 		}catch(Exception e){System.out.println(e);}
 
 		return rs;
+	}
+
+	public static List<String> getPaginatedBooks() throws SQLException {
+
+		ResultSet rs = null;
+		int status = 0;
+		try{
+			//Connection con= DBConnect.getConnection();
+
+			Connection con = DbConnectionSingleton.getInstance().createConnection();
+			PreparedStatement ps=con.prepareStatement("select * from books",
+					ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs = ps.executeQuery();
+			//con.close();
+		}catch(Exception e){System.out.println(e);}
+
+		List<String> list = new ArrayList<>();
+
+		while (rs.next()) {
+
+			Book book = new BookBuilder(rs.getString("name"))
+					.setIsbn(rs.getString("isbn"))
+					.build();
+
+			list.add(book.toString());
+		}
+
+		return list;
 	}
 
 	public static void closeDbConnection() {

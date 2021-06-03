@@ -5,7 +5,7 @@ import java.util.*;
 public class CatalogueManagerProxy implements Manager {
 	CatalogueManager cm;
 	User user;
-	List<User> validUsers;
+	public List<User> validUsers;
 	
 	public CatalogueManagerProxy(User user) {
 		this.cm = new CatalogueManager();
