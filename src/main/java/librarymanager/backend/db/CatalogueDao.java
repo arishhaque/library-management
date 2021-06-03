@@ -32,6 +32,7 @@ public class CatalogueDao {
         while (rs.next()) {
 
             Shelf shelf = new ShelfBuilder(rs.getString("name"))
+                    .setId(rs.getInt("id"))
                     .addGenre(rs.getString("genre"))
                     .addLocation(rs.getString("location"))
                     .build();
@@ -56,7 +57,7 @@ public class CatalogueDao {
 
         }catch(Exception e){System.out.println(e);}
 
-        List<Book> list = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
 
         while (rs.next()) {
 
@@ -69,15 +70,48 @@ public class CatalogueDao {
                     .setQuantity(rs.getInt("quantity"))
                     .addAuthor(rs.getString("author"))
                     .addPublisher(rs.getString("publisher"))
+                    .setShelfId(rs.getInt("shelf_no"))
                     .build();
 
-            list.add(book);
+            books.add(book);
         }
         if(con != null)
             con.close();
 
-        return list;
+        return books;
     }
 
+    public static List<BookDetailsDto> getBookDetails() throws SQLException {
+
+        List<Book> books = getAllBooks();
+        List<Shelf> shelves = getAllShelves();
+
+        List<BookDetailsDto> bookDetailsList = new ArrayList<>();
+
+        books.stream().forEach(book -> {
+
+            shelves.stream().forEach(shelf -> {
+
+                if(book.getShelfId().equals(shelf.getId())) {
+
+                    BookDetailsDto bookDetailsDto = new BookDetailsDto.BookDetailsDtoBuilder(book.getIsbn())
+                            .setName(book.getName())
+                            .setGenre(book.getGenre())
+                            .setRating(book.getRating())
+                            .setAuthor(book.getAuthor())
+                            .setPublisher(book.getPublisher())
+                            .setAvailability(book.isAvailable())
+                            .setShelf(shelf.getName())
+                            .setLocation(shelf.getLocation())
+                            .build();
+
+                    bookDetailsList.add(bookDetailsDto);
+                }
+
+            });
+
+        });
+        return bookDetailsList;
+    }
 
 }

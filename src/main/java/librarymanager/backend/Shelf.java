@@ -3,7 +3,10 @@ package librarymanager.backend;
 import java.util.*;
 
 public class Shelf extends CatalogueItem {
+
 	private static final long serialVersionUID = 1234567L;
+
+	private Integer id;
 	List<CatalogueItem> shelfContents;
 
 	public Shelf(String name) {
@@ -13,7 +16,16 @@ public class Shelf extends CatalogueItem {
 	
 	public Shelf(ShelfBuilder builder) {
 		super(builder);
+		this.id = builder.getId();
 		this.shelfContents = new ArrayList<CatalogueItem>();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	/**

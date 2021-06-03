@@ -10,6 +10,7 @@ public class Book extends CatalogueItem {
 	String author;
 	String publisher;
 	Integer quantity;
+	Integer shelfId;
 	User borrower;
 	
 	Book(String name) {
@@ -25,6 +26,7 @@ public class Book extends CatalogueItem {
 		this.publisher = builder.publisher;
 		this.author = builder.author;
 		this.quantity = builder.quantity;
+		this.shelfId = builder.shelfId;
 	}
 
 	public String getIsbn() {
@@ -93,6 +95,14 @@ public class Book extends CatalogueItem {
 		this.quantity = quantity;
 	}
 
+	public Integer getShelfId() {
+		return shelfId;
+	}
+
+	public void setShelfId(Integer shelfId) {
+		this.shelfId = shelfId;
+	}
+
 	public User getBorrower() {
 		return borrower;
 	}
@@ -107,18 +117,7 @@ public class Book extends CatalogueItem {
 		this.setAvailable(true);
 	}
 
-	@Override
-	public String toString() {
-		return "Book{" +
-				"isbn='" + isbn + '\'' +
-				", rating=" + rating +
-				", isAvailable=" + isAvailable +
-				", author='" + author + '\'' +
-				", publisher='" + publisher + '\'' +
-				", quantity=" + quantity +
-				", borrower=" + borrower +
-				'}';
-	}
+
 }
 
 

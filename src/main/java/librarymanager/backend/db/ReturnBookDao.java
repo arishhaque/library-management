@@ -12,9 +12,6 @@ public class ReturnBookDao {
 
 		int status = 0;
 		try{
-			status = updatebook(isbn);//updating quantity and issue
-
-			if(status>0){
 
 				con = DbConnectionSingleton.getInstance().createConnection();
 				PreparedStatement ps=con.prepareStatement("update issuebooks set returndate=? where book_isbn=? and studentid=?");
@@ -22,7 +19,10 @@ public class ReturnBookDao {
 				ps.setString(2,isbn);
 				ps.setInt(3,studentid);
 				status=ps.executeUpdate();
-			}
+
+				if(status>0)
+					status = updatebook(isbn);
+
 			if(con != null)
 				con.close();
 		}catch(Exception e){System.out.println(e);
@@ -45,10 +45,11 @@ public class ReturnBookDao {
 			}
 			
 			if(issued>0){
-			PreparedStatement ps2=con.prepareStatement("update books set quantity=?,issued=? where isbn=?");
-			ps2.setInt(1,quantity+1);
-			ps2.setInt(2,issued-1);
-			ps2.setString(3,isbn);
+			PreparedStatement ps2=con.prepareStatement("update books set is_available=?,quantity=?,issued=? where isbn=?");
+			ps2.setString(1, "true");
+			ps2.setInt(2,quantity+1);
+			ps2.setInt(3,issued-1);
+			ps2.setString(4,isbn);
 			
 			status=ps2.executeUpdate();
 			}

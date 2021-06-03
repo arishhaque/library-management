@@ -25,8 +25,9 @@ public class IssueBookDao {
 
 			status=updatebook(isbn);//updating quantity and issue
 
-			con = DbConnectionSingleton.getInstance().createConnection();
 			if(status>0){
+
+				con = DbConnectionSingleton.getInstance().createConnection();
 				PreparedStatement ps=con.prepareStatement("insert into issuebooks(book_isbn,studentid,studentname,studentcontact) values(?,?,?,?)");
 				ps.setString(1,isbn);
 				ps.setInt(2,studentid);
@@ -56,10 +57,11 @@ public class IssueBookDao {
 			}
 
 			if(quantity>0){
-			PreparedStatement ps2=con.prepareStatement("update books set quantity=?,issued=? where isbn=?");
-			ps2.setInt(1,quantity-1);
-			ps2.setInt(2,issued+1);
-			ps2.setString(3,isbn);
+				PreparedStatement ps2=con.prepareStatement("update books set is_available=?,quantity=?,issued=? where isbn=?");
+				ps2.setString(1, quantity - 1 <= 0 ? "false" : "true");
+				ps2.setInt(2,quantity-1);
+				ps2.setInt(3,issued+1);
+				ps2.setString(4,isbn);
 
 			status=ps2.executeUpdate();
 			}

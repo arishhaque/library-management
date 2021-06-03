@@ -8,6 +8,7 @@ public class BookBuilder extends CatalogueItemBuilder {
 	String author = "Author Not Listed";
 	String publisher = "Publisher Not Listed";
 	Integer quantity = Integer.valueOf(1);
+	Integer shelfId;
 	
 	public BookBuilder(String name) {
 		super(name);
@@ -54,6 +55,11 @@ public class BookBuilder extends CatalogueItemBuilder {
 		return this;
 	}
 
+	public BookBuilder setShelfId(Integer shelfId) {
+
+		this.shelfId = shelfId;
+		return this;
+	}
 	public Book build() {
 		return new Book(this);
 	}

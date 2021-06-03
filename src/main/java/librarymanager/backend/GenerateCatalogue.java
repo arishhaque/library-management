@@ -1,8 +1,12 @@
 package librarymanager.backend;
 
+import librarymanager.backend.db.BookDetailsDto;
 import librarymanager.backend.db.CatalogueDao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class GenerateCatalogue {
@@ -38,5 +42,13 @@ public class GenerateCatalogue {
 
             this.cmp.addBookToCatalogue(book);
         });
+    }
+
+    public List<BookDetailsDto> getBookDetails() throws SQLException {
+
+        List<BookDetailsDto> bookDetails = CatalogueDao.getBookDetails();
+        bookDetails.sort(Comparator.comparing(BookDetailsDto :: getRating));
+        Collections.reverse(bookDetails);
+        return bookDetails;
     }
 }

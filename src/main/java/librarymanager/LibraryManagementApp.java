@@ -2,6 +2,7 @@ package librarymanager;
 
 import librarymanager.backend.Book;
 import librarymanager.backend.GenerateCatalogue;
+import librarymanager.backend.db.BookDetailsDto;
 import librarymanager.frontend.LibraryMainView;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,31 +42,37 @@ public class LibraryManagementApp extends JFrame implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("\\*Library Management System*/");
+        System.out.println("\n");
+        System.out.println("\\*     Library Management System     */");
 
         GenerateCatalogue gc = new GenerateCatalogue();
 
         System.out.println("\nTop Rated Books");
-        for (Book book: gc.getCMP().sortCatalogueByRating()) {
-            System.out.println(book.getName() +", Rating: "+book.getRating());
-        }
+        List<BookDetailsDto> bookDetails = gc.getBookDetails();
+        bookDetails.stream().forEach(obj -> {
+
+            System.out.println("Title: " +obj.getName() + ", Genre: " + obj.getGenre() + ", Rating: " + obj.getRating() + "\n"
+                    +"Author: "+ obj.getAuthor() +", Publisher: "+obj.getPublisher() + ", Availability: " +obj.isAvailable() + "\n"
+                    + "Location: " +obj.getLocation() + ", Shelf: "+obj.getShelf());
+
+            System.out.println();
+        });
 
         String genre = "Action";
         System.out.println("\nTop Rated Books by Genre -> "+genre);
         for (Book book: gc.getCMP().getAllBooksByGenre(genre)) {
-            System.out.println(book.getName() + ", Author: "+book.getAuthor());
+            System.out.println("Title: " +book.getName() + ", Author: "+book.getAuthor());
         }
 
-        String search = "First";
+        String search = "Treasure";
         System.out.println("\nSearch Book: "+search);
 
         List<Book> books = gc.getCMP().searchBooks(search);
         if(books != null && !books.isEmpty()){
 
-            System.out.println("Search Result");
             books.stream().forEach(book -> {
 
-                System.out.println(book.getName());
+                System.out.println("Title: " +book.getName()+ ", Author: "+book.getAuthor());
             });
         }
         else {System.out.println("Book Search Results Not Found");}
@@ -77,7 +84,6 @@ public class LibraryManagementApp extends JFrame implements CommandLineRunner {
         List<Book> booksByAuthor = gc.getCMP().searchBooksByAuthor(searchAuthor);
         if(booksByAuthor != null && !booksByAuthor.isEmpty()){
 
-            System.out.println("Author Search Result");
             booksByAuthor.stream().forEach(book -> {
 
                 System.out.println(book.getName() +", Author: "+book.getAuthor());
