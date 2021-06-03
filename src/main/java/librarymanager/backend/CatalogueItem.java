@@ -74,5 +74,9 @@ public abstract class CatalogueItem implements Serializable {
 	public List<Book> getBooksByGenre(String genre) { return null; }
 	
 	public CatalogueItem findItem(String name) { return null; }
+
+	public List<Book> searchBooks(String name) {return null;}
+
+	public List<Book> searchBooksByAuthor(String author) {return null;}
 	
 }

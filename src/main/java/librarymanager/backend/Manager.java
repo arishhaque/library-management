@@ -8,6 +8,8 @@ public interface Manager {
 	public List<Shelf> getShelvesByGenre(String genre);
 	public List<Book> getAllBooksByGenre(String genre);
 	public List<Book> sortCatalogueByRating();
+	public List<Book> searchBooks(String name);
+	public List<Book> searchBooksByAuthor(String author);
 	public Book findSpecificBook(String name);
 	public void issueBookToUser(String bookName, User user);
 	public void returnBook(String bookName);

@@ -102,5 +102,39 @@ public class Shelf extends CatalogueItem {
 		}
 		return found;
 	}
-	
+
+
+	@Override
+	public List<Book> searchBooks(String name) {
+		List<Book> books = new ArrayList<>();
+		for (CatalogueItem item: this.shelfContents) {
+			if (item instanceof Book) {
+				if (item.getName().toLowerCase().contains(name.toLowerCase())) {
+					books.add((Book) item);
+				}
+			} else{
+
+				books.addAll(item.searchBooks(name));
+			}
+		}
+		return books;
+	}
+
+	@Override
+	public List<Book> searchBooksByAuthor(String author) {
+		List<Book> books = new ArrayList<>();
+		for (CatalogueItem item: this.shelfContents) {
+			if (item instanceof Book) {
+				if (((Book) item).getAuthor().toLowerCase().contains(author.toLowerCase())) {
+					books.add((Book) item);
+				}
+			} else{
+
+				books.addAll(item.searchBooksByAuthor(author));
+			}
+		}
+		return books;
+	}
+
+
 }

@@ -44,6 +44,16 @@ public class CatalogueManagerProxy implements Manager {
 	}
 
 	@Override
+	public List<Book> searchBooks(String name) {
+		return cm.searchBooks(name);
+	}
+
+	@Override
+	public List<Book> searchBooksByAuthor(String author) {
+		return cm.searchBooksByAuthor(author);
+	}
+
+	@Override
 	public Book findSpecificBook(String name) {
 		return cm.findSpecificBook(name);
 	}

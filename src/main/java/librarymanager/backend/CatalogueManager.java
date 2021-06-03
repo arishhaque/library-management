@@ -64,7 +64,26 @@ public class CatalogueManager implements Manager {
 		Collections.reverse(books);
 		return books;
 	}
-	
+
+	@Override
+	public List<Book> searchBooks(String name) {
+
+		List<Book> books = new ArrayList<Book>();
+		for (Shelf catItem: this.catalogue) {
+			books.addAll(catItem.searchBooks(name));
+		}
+		return books;
+	}
+
+	@Override
+	public List<Book> searchBooksByAuthor(String author) {
+		List<Book> books = new ArrayList<Book>();
+		for (Shelf catItem: this.catalogue) {
+			books.addAll(catItem.searchBooksByAuthor(author));
+		}
+		return books;
+	}
+
 	public Book findSpecificBook(String name) {
 		Book found = null;
 		for (Shelf catItem: this.catalogue) {
