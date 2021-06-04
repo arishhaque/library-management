@@ -68,13 +68,14 @@ public class LibraryMainView extends JFrame {
 		});
 		btnLibrarianLogin.setFont(new Font("Tacoma", Font.PLAIN, 15));
 
-		JButton btnViewCatalogue = new JButton("View Catalogue");
+		/*JButton btnViewCatalogue = new JButton("View Catalogue");
 		btnViewCatalogue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CatalogueView.main(new String[]{});
 			}
 		});
 		btnViewCatalogue.setFont(new Font("Tacoma", Font.PLAIN, 15));
+		*/
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

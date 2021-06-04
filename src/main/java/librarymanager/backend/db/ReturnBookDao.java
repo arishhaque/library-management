@@ -1,6 +1,5 @@
 package librarymanager.backend.db;
 
-
 import java.sql.*;
 
 public class ReturnBookDao {
@@ -20,7 +19,7 @@ public class ReturnBookDao {
 				status=ps.executeUpdate();
 
 				if(status>0)
-					status = updatebook(isbn);
+					status = update(isbn);
 
 			if(con != null)
 				con.close();
@@ -29,7 +28,9 @@ public class ReturnBookDao {
 
 		return status;
 	}
-	public static int updatebook(String isbn){
+
+
+	public static int update(String isbn){
 
 		int status=0;
 		int quantity=0,issued=0;

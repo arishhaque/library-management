@@ -2,7 +2,6 @@ package librarymanager.backend.db;
 
 
 import librarymanager.backend.LibrarianUser;
-
 import java.sql.*;
 
 
@@ -27,6 +26,7 @@ public class LibrarianDao {
 		}catch(Exception e){System.out.println(e);}
 		return status;
 	}
+
 	public static int delete(int id){
 		int status=0;
 		try{
@@ -68,8 +68,7 @@ public class LibrarianDao {
 		return status;
 	}
 
-
-	public static ResultSet getLibrarians() {
+	public static ResultSet findAll() {
 
 		ResultSet rs = null;
 		try {

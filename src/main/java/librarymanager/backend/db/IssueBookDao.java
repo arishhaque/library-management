@@ -1,6 +1,8 @@
 package librarymanager.backend.db;
 
 import java.sql.*;
+
+
 public class IssueBookDao {
 
 	private static Connection con;
@@ -22,9 +24,7 @@ public class IssueBookDao {
 	public static int save(String isbn,int studentid,String studentname,String studentcontact){
 		int status=0;
 		try{
-
-			status=updatebook(isbn);//updating quantity and issue
-
+			status= update(isbn);//updating quantity and issue
 			if(status>0){
 
 				con = DbConnectionSingleton.getInstance().createConnection();
@@ -42,11 +42,10 @@ public class IssueBookDao {
 	}
 
 
-	public static int updatebook(String isbn){
+	public static int update(String isbn){
 		int status=0;
 		int quantity=0,issued=0;
 		try{
-
 			con = DbConnectionSingleton.getInstance().createConnection();
 			PreparedStatement ps=con.prepareStatement("select quantity,issued from books where isbn=?");
 			ps.setString(1,isbn);
@@ -55,7 +54,6 @@ public class IssueBookDao {
 				quantity=rs.getInt("quantity");
 				issued=rs.getInt("issued");
 			}
-
 			if(quantity>0){
 				PreparedStatement ps2=con.prepareStatement("update books set is_available=?,quantity=?,issued=? where isbn=?");
 				ps2.setString(1, quantity - 1 <= 0 ? "false" : "true");
@@ -70,7 +68,6 @@ public class IssueBookDao {
 			System.out.println(e);
 
 		}
-
 		return status;
 	}
 

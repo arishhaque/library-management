@@ -1,12 +1,7 @@
 package librarymanager.backend.db;
 
-
 import librarymanager.backend.Book;
-import librarymanager.backend.BookBuilder;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BookDao {
 
@@ -34,7 +29,7 @@ public class BookDao {
 		return status;
 	}
 
-	public static ResultSet getBooks() throws SQLException {
+	public static ResultSet findAll() throws SQLException {
 
 		ResultSet rs = null;
 		int status = 0;
@@ -47,42 +42,6 @@ public class BookDao {
 		}catch(Exception e){System.out.println(e);}
 
 		return rs;
-	}
-
-	public static List<String> getPaginatedBooks() throws SQLException {
-
-		ResultSet rs = null;
-		int status = 0;
-		try{
-
-			Connection con = DbConnectionSingleton.getInstance().createConnection();
-			PreparedStatement ps=con.prepareStatement("select * from books",
-					ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-			rs = ps.executeQuery();
-
-		}catch(Exception e){System.out.println(e);}
-
-		List<String> list = new ArrayList<>();
-
-		while (rs.next()) {
-
-			Book book = new BookBuilder(rs.getString("name"))
-					.setIsbn(rs.getString("isbn"))
-					.addAvailability(rs.getString("is_available") != null && rs.getString("is_available")
-							.equalsIgnoreCase("true") ? true : false)
-					.addGenre(rs.getString("genre"))
-					.addRating(rs.getDouble("rating"))
-					.setQuantity(rs.getInt("quantity"))
-					.addAuthor(rs.getString("author"))
-					.addPublisher(rs.getString("publisher"))
-					.build();
-
-			list.add(book.toString());
-		}
-		if(con != null)
-			con.close();
-
-		return list;
 	}
 
 	public static void closeDbConnection() {

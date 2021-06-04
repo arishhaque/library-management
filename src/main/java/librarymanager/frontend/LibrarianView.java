@@ -46,7 +46,7 @@ public class LibrarianView extends JFrame {
 		String column[]=null;
 		try{
 
-			ResultSet rs = LibrarianDao.getLibrarians();
+			ResultSet rs = LibrarianDao.findAll();
 			ResultSetMetaData rsmd=rs.getMetaData();
 			int cols=rsmd.getColumnCount();
 			column=new String[cols];

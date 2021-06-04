@@ -2,7 +2,7 @@ package librarymanager;
 
 import librarymanager.backend.Book;
 import librarymanager.backend.GenerateCatalogue;
-import librarymanager.backend.db.BookDetailsDto;
+import librarymanager.backend.BookDetailsDto;
 import librarymanager.frontend.LibraryMainView;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

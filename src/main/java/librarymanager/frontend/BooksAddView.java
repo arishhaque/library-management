@@ -125,7 +125,7 @@ public class BooksAddView extends JFrame {
 					.addAuthor(author)
 					.addPublisher(publisher)
 					.addAvailability(quantity > 0 ? true : false)
-					.setQuantity(quantity)
+					.addQuantity(quantity)
 					.addLocation(String.valueOf(shelfNumber))
 					.build());
 

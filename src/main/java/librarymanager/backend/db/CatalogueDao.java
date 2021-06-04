@@ -1,9 +1,6 @@
 package librarymanager.backend.db;
 
-import librarymanager.backend.Book;
-import librarymanager.backend.BookBuilder;
-import librarymanager.backend.Shelf;
-import librarymanager.backend.ShelfBuilder;
+import librarymanager.backend.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +18,7 @@ public class CatalogueDao {
         ResultSet rs = null;
 
         try{
-            Connection con = DbConnectionSingleton.getInstance().createConnection();
+            con = DbConnectionSingleton.getInstance().createConnection();
             PreparedStatement ps=con.prepareStatement("select * from shelves",
                     ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             rs = ps.executeQuery();
@@ -50,7 +47,7 @@ public class CatalogueDao {
         ResultSet rs = null;
         try{
 
-            Connection con = DbConnectionSingleton.getInstance().createConnection();
+            con = DbConnectionSingleton.getInstance().createConnection();
             PreparedStatement ps=con.prepareStatement("select * from books",
                     ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             rs = ps.executeQuery();
@@ -67,7 +64,7 @@ public class CatalogueDao {
                             .equalsIgnoreCase("true") ? true : false)
                     .addGenre(rs.getString("genre"))
                     .addRating(rs.getDouble("rating"))
-                    .setQuantity(rs.getInt("quantity"))
+                    .addQuantity(rs.getInt("quantity"))
                     .addAuthor(rs.getString("author"))
                     .addPublisher(rs.getString("publisher"))
                     .setShelfId(rs.getInt("shelf_no"))
@@ -107,9 +104,7 @@ public class CatalogueDao {
 
                     bookDetailsList.add(bookDetailsDto);
                 }
-
             });
-
         });
         return bookDetailsList;
     }

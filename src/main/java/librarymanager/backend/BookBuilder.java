@@ -50,7 +50,7 @@ public class BookBuilder extends CatalogueItemBuilder {
 		return this;
 	}
 
-	public BookBuilder setQuantity(Integer quantity) {
+	public BookBuilder addQuantity(Integer quantity) {
 		this.quantity = quantity;
 		return this;
 	}

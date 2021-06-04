@@ -30,9 +30,8 @@ public class DbConnectionSingleton {
             Class driver_class = Class.forName(driver);
             Driver driver = (Driver) driver_class.newInstance();
             DriverManager.registerDriver(driver);
-            //connection = DriverManager.getConnection(url + dbName);
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/library_db",
-                    "admin","admin");
+            con = DriverManager.getConnection(url + dbName, userName, password);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
