@@ -3,7 +3,8 @@ A Design Patterns project by [Shiva Govindaraju](https://github.com/ShivaGovinda
 
 Santa Clara University - COEN 359 Spring 2021 - Prof. Rani Mikkilineni
 
-##Project Description
+## Project Description
+
 The goal of this project was to develop an application that would assist in the management of a Library Catalogue. The suggested use-case was for small libraries employed by schools and universities to manage their existing library catalogue in a useful way, though the actual stakeholders in this project are not so limited: anyone who requires the management of a catalogue of books would benefit from this application.
 
 This entailed being able to organize a collection of books onto library shelves which exist in the real-world by storing their information and locations electronically. The application should not only allow for the organization of all catalogue materials, but also permit the user to find books based on various criteria, as well as to issue books to select individuals (marking them as no longer available to issuing, once no more of that book is available in the catalogue) and to return them back to the catalogue. User access should also be restricted to certain functions, such that only select users are given permission/privilege to perform select actions.
@@ -21,7 +22,8 @@ A brief description of the overall functionalities necessary are as follows:
 - Administrators would be able to add/remove valid Users of the Catalogue
 - Administrators should possess the same privileges as Librarians as well
 
-##Requirements
+## Requirements
+
 To run the application, there are certain requirements for the machine that the application is being run upon.
 
 First, the application was developed using Java 11, and would require that the Java 11.0.11 JDK is utilized on the machine running the application.
