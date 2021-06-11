@@ -1,8 +1,6 @@
 # Library Management
 A Design Patterns project by [Shiva Govindaraju](https://github.com/ShivaGovindaraju) and [Arish Haque](https://github.com/arishhaque).
 
-Santa Clara University - COEN 359 Spring 2021 - Prof. Rani Mikkilineni
-
 ## Project Description
 
 The goal of this project was to develop an application that would assist in the management of a Library Catalogue. The suggested use-case was for small libraries employed by schools and universities to manage their existing library catalogue in a useful way, though the actual stakeholders in this project are not so limited: anyone who requires the management of a catalogue of books would benefit from this application.
