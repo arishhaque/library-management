@@ -11,7 +11,6 @@ public class Book extends CatalogueItem {
 	String publisher;
 	Integer quantity;
 	Integer shelfId;
-	User borrower;
 	
 	Book(String name) {
 		super(name);
@@ -101,20 +100,6 @@ public class Book extends CatalogueItem {
 
 	public void setShelfId(Integer shelfId) {
 		this.shelfId = shelfId;
-	}
-
-	public User getBorrower() {
-		return borrower;
-	}
-	
-	public void issueBookToUser(User borrower) {
-		this.borrower = borrower;
-		this.setAvailable(false);
-	}
-	
-	public void returnBook() {
-		this.borrower = null;
-		this.setAvailable(true);
 	}
 
 

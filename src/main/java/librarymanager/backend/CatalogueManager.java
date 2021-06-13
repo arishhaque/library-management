@@ -96,24 +96,6 @@ public class CatalogueManager implements Manager {
 		return found;
 	}
 	
-	public void issueBookToUser(String bookName, User user) {
-		Book foundBook = this.findSpecificBook(bookName);
-		if (foundBook == null) {
-			System.err.println("Could not find book " + bookName + " in Catalogue.");
-		} else {
-			foundBook.issueBookToUser(user);
-		}
-	}
-	
-	public void returnBook(String bookName) {
-		Book foundBook = this.findSpecificBook(bookName);
-		if (foundBook == null) {
-			System.err.println("Could not find book " + bookName + " in Catalogue.");
-		} else {
-			foundBook.returnBook();
-		}
-	}
-	
 	public List<Book> getAllIssuedBooks() {
 		List<Book> books = new ArrayList<Book>();
 		List<Book> issued = new ArrayList<Book>();

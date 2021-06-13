@@ -62,16 +62,7 @@ public class CatalogueManagerProxy implements Manager {
 	public Book findSpecificBook(String name) {
 		return cm.findSpecificBook(name);
 	}
-	
-	@Override
-	public void issueBookToUser(String bookName, User user) {
-		cm.issueBookToUser(bookName, user);
-	}
-	
-	@Override
-	public void returnBook(String bookName) {
-		cm.returnBook(bookName);
-	}
+
 	
 	@Override
 	public List<Book> getAllIssuedBooks() {
