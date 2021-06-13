@@ -1,6 +1,6 @@
 package librarymanager.frontend;
 
-import librarymanager.backend.db.IssueBookDao;
+import librarymanager.backend.dao.IssueBookDao;
 
 import java.awt.EventQueue;
 

@@ -1,7 +1,9 @@
-package librarymanager.backend;
+package librarymanager.backend.builders;
 
-public abstract class CatalogueItemBuilder {
-	String name = "None";
+
+public class CatalogueItemBuilder {
+
+	String name;
 	String genre = "None";
 	String location = "None";
 	

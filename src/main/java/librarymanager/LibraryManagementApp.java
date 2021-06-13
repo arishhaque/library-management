@@ -1,8 +1,8 @@
 package librarymanager;
 
-import librarymanager.backend.Book;
+import librarymanager.backend.builders.Book;
 import librarymanager.backend.GenerateCatalogue;
-import librarymanager.backend.BookDetailsDto;
+import librarymanager.util.BookDetailsDto;
 import librarymanager.frontend.LibraryMainView;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

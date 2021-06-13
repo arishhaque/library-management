@@ -1,7 +1,7 @@
 package librarymanager.frontend;
 
-import librarymanager.backend.BookBuilder;
-import librarymanager.backend.db.BookDao;
+import librarymanager.backend.builders.BookBuilder;
+import librarymanager.backend.dao.BookDao;
 
 import java.awt.EventQueue;
 

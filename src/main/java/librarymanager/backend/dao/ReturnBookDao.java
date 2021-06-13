@@ -1,4 +1,6 @@
-package librarymanager.backend.db;
+package librarymanager.backend.dao;
+
+import librarymanager.backend.dbconfig.DbConnectionSingleton;
 
 import java.sql.*;
 
@@ -11,7 +13,7 @@ public class ReturnBookDao {
 		int status = 0;
 		try{
 
-				con = DbConnectionSingleton.getInstance().createConnection();
+				con = DbConnectionSingleton.getInstance().getConnection();
 				PreparedStatement ps=con.prepareStatement("update issuebooks set returndate=? where book_isbn=? and studentid=?");
 				ps.setDate(1, new Date(System.currentTimeMillis()));
 				ps.setString(2,isbn);
@@ -35,7 +37,7 @@ public class ReturnBookDao {
 		int status=0;
 		int quantity=0,issued=0;
 		try{
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("select quantity,issued from books where isbn=?");
 			ps.setString(1,isbn);
 			ResultSet rs=ps.executeQuery();

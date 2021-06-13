@@ -1,6 +1,10 @@
 package librarymanager.backend;
 
-import librarymanager.backend.db.CatalogueDao;
+import librarymanager.backend.builders.AdminUser;
+import librarymanager.backend.builders.Book;
+import librarymanager.backend.builders.Shelf;
+import librarymanager.backend.dao.CatalogueDao;
+import librarymanager.util.BookDetailsDto;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -13,7 +17,7 @@ public class GenerateCatalogue {
 
     public GenerateCatalogue()  throws SQLException {
 
-        this.cmp = new CatalogueManagerProxy(new UserBuilder("admin", "admin@123").buildAdminUser());
+        this.cmp = new CatalogueManagerProxy(new AdminUser("admin", "admin@123"));
         this.buildCMPShelves();
         this.buildCMPBooks();
 

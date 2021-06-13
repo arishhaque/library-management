@@ -1,4 +1,5 @@
-package librarymanager.backend;
+package librarymanager.backend.builders;
+
 
 public class UserBuilder {
 	String name;

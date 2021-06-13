@@ -1,5 +1,9 @@
 package librarymanager.backend;
 
+import librarymanager.backend.builders.Book;
+import librarymanager.backend.builders.Shelf;
+import librarymanager.backend.builders.User;
+
 import java.util.*;
 
 public interface Manager {

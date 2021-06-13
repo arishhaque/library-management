@@ -1,6 +1,6 @@
 package librarymanager.frontend;
 
-import librarymanager.backend.db.LibrarianDao;
+import librarymanager.backend.dao.LibrarianDao;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;

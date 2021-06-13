@@ -1,5 +1,10 @@
 package librarymanager.backend;
 
+import librarymanager.backend.builders.AdminUser;
+import librarymanager.backend.builders.Book;
+import librarymanager.backend.builders.Shelf;
+import librarymanager.backend.builders.User;
+
 import java.util.*;
 
 public class CatalogueManagerProxy implements Manager {

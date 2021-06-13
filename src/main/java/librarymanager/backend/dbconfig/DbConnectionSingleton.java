@@ -1,11 +1,20 @@
-package librarymanager.backend.db;
+package librarymanager.backend.dbconfig;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
 
-
+//@PropertySource({ "classpath:application.properties" })
+//@Configuration
+//@Component
 public class DbConnectionSingleton {
 
     String url = "jdbc:mysql://localhost:3306/";
@@ -18,19 +27,32 @@ public class DbConnectionSingleton {
 
     private Connection con;
 
+   @Autowired
+   private Environment env;
+
     private DbConnectionSingleton() {
-        con = createConnection();
     }
 
 
-    public Connection createConnection() {
+
+    public Connection getConnection() {
 
         try {
             // Load the JDBC driver
+
             Class driver_class = Class.forName(driver);
             Driver driver = (Driver) driver_class.newInstance();
             DriverManager.registerDriver(driver);
             con = DriverManager.getConnection(url + dbName, userName, password);
+
+             /* create dao and dao impl
+            Class driver_class = Class.forName(env.getProperty("db.jdbc.driverClassName"));
+            Driver driver = (Driver) driver_class.newInstance();
+            DriverManager.registerDriver(driver);
+            con = DriverManager.getConnection(env.getProperty("db.jdbc.url"),
+                    env.getProperty("db.jdbc.user"), env.getProperty("db.jdbc.pass"));
+
+             */
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

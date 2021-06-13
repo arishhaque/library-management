@@ -1,4 +1,4 @@
-package librarymanager.backend;
+package librarymanager.util;
 
 public class BookDetailsDto {
 

@@ -1,4 +1,4 @@
-package librarymanager.backend;
+package librarymanager.backend.builders;
 
 public class Book extends CatalogueItem {
 

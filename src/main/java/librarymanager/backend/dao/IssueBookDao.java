@@ -1,4 +1,6 @@
-package librarymanager.backend.db;
+package librarymanager.backend.dao;
+
+import librarymanager.backend.dbconfig.DbConnectionSingleton;
 
 import java.sql.*;
 
@@ -11,7 +13,7 @@ public class IssueBookDao {
 		boolean status=false;
 		try{
 
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("select * from books where isbn=?");
 			ps.setString(1,isbn);
 			ResultSet rs=ps.executeQuery();
@@ -27,7 +29,7 @@ public class IssueBookDao {
 			status= update(isbn);//updating quantity and issue
 			if(status>0){
 
-				con = DbConnectionSingleton.getInstance().createConnection();
+				con = DbConnectionSingleton.getInstance().getConnection();
 				PreparedStatement ps=con.prepareStatement("insert into issuebooks(book_isbn,studentid,studentname,studentcontact) values(?,?,?,?)");
 				ps.setString(1,isbn);
 				ps.setInt(2,studentid);
@@ -46,7 +48,7 @@ public class IssueBookDao {
 		int status=0;
 		int quantity=0,issued=0;
 		try{
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("select quantity,issued from books where isbn=?");
 			ps.setString(1,isbn);
 			ResultSet rs=ps.executeQuery();
@@ -77,7 +79,7 @@ public class IssueBookDao {
 		int status = 0;
 		try{
 
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("select * from issuebooks",
 					ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = ps.executeQuery();

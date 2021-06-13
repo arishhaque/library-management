@@ -1,7 +1,7 @@
 package librarymanager.frontend;
 
-import librarymanager.backend.UserBuilder;
-import librarymanager.backend.db.LibrarianDao;
+import librarymanager.backend.builders.UserBuilder;
+import librarymanager.backend.dao.LibrarianDao;
 
 import java.awt.EventQueue;
 

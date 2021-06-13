@@ -1,7 +1,9 @@
-package librarymanager.backend.db;
+package librarymanager.backend.dao;
 
 
-import librarymanager.backend.LibrarianUser;
+import librarymanager.backend.builders.LibrarianUser;
+import librarymanager.backend.dbconfig.DbConnectionSingleton;
+
 import java.sql.*;
 
 
@@ -13,7 +15,7 @@ public class LibrarianDao {
 		int status=0;
 		try{
 
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("insert into librarian(name,password,email,address,contact,is_admin) values(?,?,?,?,?,?)");
 			ps.setString(1,librarianUser.getName());
 			ps.setString(2,librarianUser.getPassword());
@@ -30,7 +32,7 @@ public class LibrarianDao {
 	public static int delete(int id){
 		int status=0;
 		try{
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("delete from librarian where id=?");
 			ps.setInt(1,id);
 			status=ps.executeUpdate();
@@ -43,7 +45,7 @@ public class LibrarianDao {
 	public static boolean isAdmin(String name,String password){
 		boolean status=false;
 		try{
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("select is_admin from librarian where name=? and password=?");
 			ps.setString(1,name);
 			ps.setString(2,password);
@@ -57,7 +59,7 @@ public class LibrarianDao {
 	public static boolean validate(String name,String password){
 		boolean status=false;
 		try{
-			con = DbConnectionSingleton.getInstance().createConnection();
+			con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps=con.prepareStatement("select * from librarian where name=? and password=?");
 			ps.setString(1,name);
 			ps.setString(2,password);
@@ -72,7 +74,7 @@ public class LibrarianDao {
 
 		ResultSet rs = null;
 		try {
-			Connection con = DbConnectionSingleton.getInstance().createConnection();
+			Connection con = DbConnectionSingleton.getInstance().getConnection();
 			PreparedStatement ps = con.prepareStatement("select * from librarian", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs = ps.executeQuery();
 

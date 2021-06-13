@@ -1,6 +1,11 @@
-package librarymanager.backend.db;
+package librarymanager.backend.dao;
 
-import librarymanager.backend.*;
+import librarymanager.backend.builders.Book;
+import librarymanager.backend.builders.BookBuilder;
+import librarymanager.backend.builders.Shelf;
+import librarymanager.backend.builders.ShelfBuilder;
+import librarymanager.backend.dbconfig.DbConnectionSingleton;
+import librarymanager.util.BookDetailsDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +23,7 @@ public class CatalogueDao {
         ResultSet rs = null;
 
         try{
-            con = DbConnectionSingleton.getInstance().createConnection();
+            con = DbConnectionSingleton.getInstance().getConnection();
             PreparedStatement ps=con.prepareStatement("select * from shelves",
                     ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             rs = ps.executeQuery();
@@ -47,7 +52,7 @@ public class CatalogueDao {
         ResultSet rs = null;
         try{
 
-            con = DbConnectionSingleton.getInstance().createConnection();
+            con = DbConnectionSingleton.getInstance().getConnection();
             PreparedStatement ps=con.prepareStatement("select * from books",
                     ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             rs = ps.executeQuery();

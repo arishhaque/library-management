@@ -1,7 +1,7 @@
 package librarymanager.frontend;
 
 
-import librarymanager.backend.db.BookDao;
+import librarymanager.backend.dao.BookDao;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.ResultSet;

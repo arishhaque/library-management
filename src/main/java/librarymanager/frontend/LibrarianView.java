@@ -1,7 +1,7 @@
 package librarymanager.frontend;
 
 
-import librarymanager.backend.db.LibrarianDao;
+import librarymanager.backend.dao.LibrarianDao;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

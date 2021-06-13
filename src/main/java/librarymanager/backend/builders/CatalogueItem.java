@@ -1,4 +1,5 @@
-package librarymanager.backend;
+package librarymanager.backend.builders;
+
 
 import java.io.Serializable;
 import java.util.*;
@@ -8,8 +9,8 @@ public abstract class CatalogueItem implements Serializable {
 	String name;
 	String genre;
 	String location;
-	
-	CatalogueItem(String name) {
+
+	public CatalogueItem(String name) {
 		this.name = name;
 	}
 	
