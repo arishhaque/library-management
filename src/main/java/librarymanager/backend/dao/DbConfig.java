@@ -1,6 +1,9 @@
 package librarymanager.backend.dao;
 
 
+import librarymanager.util.PropertiesLoader;
+
+import java.io.IOException;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,12 +12,6 @@ import java.sql.Connection;
 
 // singleton
 public class DbConfig {
-
-    final String url = "jdbc:mysql://localhost:3306/";
-    final String dbName = "library_db";
-    final String driver = "com.mysql.cj.jdbc.Driver";
-    final String userName = "admin";
-    final String password = "admin";
 
     private static DbConfig dbConnectionObj;
 
@@ -25,10 +22,14 @@ public class DbConfig {
 
         try {
             // Load the JDBC driver
-            Class driver_class = Class.forName(driver);
+            Class driver_class = Class.forName(PropertiesLoader
+                    .loadProperties().getProperty("db.jdbc.driverClassName"));
             Driver driver = (Driver) driver_class.newInstance();
             DriverManager.registerDriver(driver);
-            con = DriverManager.getConnection(url + dbName, userName, password);
+            con = DriverManager.getConnection(
+                    PropertiesLoader.loadProperties().getProperty("db.jdbc.url"),
+                    PropertiesLoader.loadProperties().getProperty("db.jdbc.user"),
+                    PropertiesLoader.loadProperties().getProperty("db.jdbc.pass"));
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -37,6 +38,8 @@ public class DbConfig {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return con;
