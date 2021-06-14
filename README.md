@@ -32,5 +32,5 @@ The DbConfig file requires editing to make the hard-coded values in the file mat
 
 
 Run the jar:
-java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8080 -jar library-management-1.0.jar
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8000 -jar library-management-1.0.jar
 
