@@ -1,8 +1,12 @@
 package librarymanager.backend.dao;
 
-import java.sql.*;
+import librarymanager.backend.builders.Book;
 
-public class ReturnBookDao {
+import java.sql.*;
+import java.util.List;
+import java.util.Optional;
+
+public class ReturnBookDao implements GenericDao<Book> {
 
 	private static Connection con;
 
@@ -58,4 +62,28 @@ public class ReturnBookDao {
 		return status;
 	}
 
+	@Override
+	public Optional<Book> get(int id) {
+		return Optional.empty();
+	}
+
+	@Override
+	public List<Book> getAll() {
+		return null;
+	}
+
+	@Override
+	public void save(Book book) {
+
+	}
+
+	@Override
+	public void update(Book book, String[] params) {
+
+	}
+
+	@Override
+	public void delete(int id) {
+
+	}
 }

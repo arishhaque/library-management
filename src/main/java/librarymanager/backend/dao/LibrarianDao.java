@@ -2,11 +2,14 @@ package librarymanager.backend.dao;
 
 
 import librarymanager.backend.builders.LibrarianUser;
+import librarymanager.backend.builders.User;
 
 import java.sql.*;
+import java.util.List;
+import java.util.Optional;
 
 
-public class LibrarianDao {
+public class LibrarianDao implements GenericDao<User> {
 
 	private static Connection con;
 	
@@ -28,7 +31,32 @@ public class LibrarianDao {
 		return status;
 	}
 
-	public static int delete(int id){
+	@Override
+	public Optional<User> get(int id) {
+		return Optional.empty();
+	}
+
+	@Override
+	public List<User> getAll() {
+		return null;
+	}
+
+	@Override
+	public void save(User user) {
+
+	}
+
+	@Override
+	public void update(User user, String[] params) {
+
+	}
+
+	@Override
+	public void delete(int id) {
+
+	}
+
+	public static int remove(int id){
 		int status=0;
 		try{
 			con = DbConfig.getInstance().getConnection();

@@ -61,7 +61,7 @@ public class LibrarianDeleteView extends JFrame {
 					JOptionPane.showMessageDialog(LibrarianDeleteView.this,"Id can't be blank");
 				}else{
 					int id=Integer.parseInt(sid);
-					int i= LibrarianDao.delete(id);
+					int i= LibrarianDao.remove(id);
 					if(i>0){
 						JOptionPane.showMessageDialog(LibrarianDeleteView.this,"Record deleted successfully!");
 					}else{

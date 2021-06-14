@@ -118,7 +118,7 @@ public class BooksAddView extends JFrame {
 				String genre = textField_6.getText();
 				int shelfNumber = Integer.parseInt(textField_7.getText());
 
-			int i= BookDao.save(new BookBuilder(name)
+			int i= BookDao.add(new BookBuilder(name)
 					.setIsbn(isbn)
 					.addRating(Double.valueOf(rating))
 					.addGenre(genre)

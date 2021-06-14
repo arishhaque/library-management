@@ -1,9 +1,6 @@
 package librarymanager.backend.dao;
 
-import librarymanager.backend.builders.Book;
-import librarymanager.backend.builders.BookBuilder;
-import librarymanager.backend.builders.Shelf;
-import librarymanager.backend.builders.ShelfBuilder;
+import librarymanager.backend.builders.*;
 import librarymanager.util.BookDetailsDto;
 
 
@@ -13,9 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
-public class CatalogueDao {
+public class CatalogueDao implements GenericDao<CatalogueItem> {
 
     private static Connection con;
 
@@ -115,4 +113,28 @@ public class CatalogueDao {
         return bookDetailsList;
     }
 
+    @Override
+    public Optional<CatalogueItem> get(int id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<CatalogueItem> getAll() {
+        return null;
+    }
+
+    @Override
+    public void save(CatalogueItem catalogueItem) {
+
+    }
+
+    @Override
+    public void update(CatalogueItem catalogueItem, String[] params) {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
 }
