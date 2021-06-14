@@ -28,7 +28,7 @@ First, the application was developed using Java 11, and would require that the J
 
 Secondly, it is also crucial that MySQL is installed on the machine as well, and that within src/main/resources/ of the project application, the library_db.sql file is dumped into a MySQL database table titled ‘library_db’. This must be done before the executable JAR file can be run to begin the application or the application will fail to operate as a result of SQL Exceptions and errors from the database being absent from MySQL.
 
-The DbConfig file requires editing to make the hard-coded values in the file match the username and password set for the application machine running MySQL. Similarly, Maven is also required to be installed on the machine to provide access to the IDE for the packaging of the Java application developed using Spring Boot and Java GUI frameworks. Having these tools integrated into the IDE is very useful to run the application.
+The application.properties file requires editing to make the hard-coded values in the file match the username and password set for the application machine running MySQL. Similarly, Maven is also required to be installed on the machine to provide access to the IDE for the packaging of the Java application developed using Spring Boot and Java GUI frameworks. Having these tools integrated into the IDE is very useful to run the application.
 
 
 Run the jar:
