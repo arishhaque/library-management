@@ -30,6 +30,7 @@ Secondly, it is also crucial that MySQL is installed on the machine as well, and
 
 The DbConfig file requires editing to make the hard-coded values in the file match the username and password set for the application machine running MySQL. Similarly, Maven is also required to be installed on the machine to provide access to the IDE for the packaging of the Java application developed using Spring Boot and Java GUI frameworks. Having these tools integrated into the IDE is very useful to run the application.
 
-Run the jar
+
+Run the jar:
 java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8080 -jar library-management-1.0.jar
 
